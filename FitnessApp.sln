@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.API", "FitnessApp.API\FitnessApp.API.csproj", "{CA4A93BD-4AAF-42AC-A007-5F3F884D438D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.Service", "FitnessApp.Service\FitnessApp.Service.csproj", "{CF062377-C491-4D53-8CF0-89AF48495D02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.Core", "FitnessApp.Core\FitnessApp.Core.csproj", "{498AEC35-0E17-4C3E-8047-7CAD13EB7ECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.DAL", "FitnessApp.DAL\FitnessApp.DAL.csproj", "{6581D9E8-7BBE-4EEE-9E7F-6A26574BEC4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA4A93BD-4AAF-42AC-A007-5F3F884D438D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4A93BD-4AAF-42AC-A007-5F3F884D438D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4A93BD-4AAF-42AC-A007-5F3F884D438D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4A93BD-4AAF-42AC-A007-5F3F884D438D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF062377-C491-4D53-8CF0-89AF48495D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF062377-C491-4D53-8CF0-89AF48495D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF062377-C491-4D53-8CF0-89AF48495D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF062377-C491-4D53-8CF0-89AF48495D02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498AEC35-0E17-4C3E-8047-7CAD13EB7ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498AEC35-0E17-4C3E-8047-7CAD13EB7ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498AEC35-0E17-4C3E-8047-7CAD13EB7ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498AEC35-0E17-4C3E-8047-7CAD13EB7ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6581D9E8-7BBE-4EEE-9E7F-6A26574BEC4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6581D9E8-7BBE-4EEE-9E7F-6A26574BEC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6581D9E8-7BBE-4EEE-9E7F-6A26574BEC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6581D9E8-7BBE-4EEE-9E7F-6A26574BEC4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

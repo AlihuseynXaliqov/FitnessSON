@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "5ljM4vC1MT2ncREiX5UMecXPtTRBOW0DV4rYXsjWZZE=",
+  "Source": "FitnessApp.API",
+  "BasePath": "_content/FitnessApp.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

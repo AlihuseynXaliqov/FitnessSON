@@ -1,0 +1,13 @@
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\bin\Debug\net8.0\FitnessApp.Core.deps.json
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\bin\Debug\net8.0\FitnessApp.Core.dll
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\bin\Debug\net8.0\FitnessApp.Core.pdb
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\FitnessApp.Core.csproj.AssemblyReference.cache
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\FitnessApp.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\FitnessApp.Core.AssemblyInfoInputs.cache
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\FitnessApp.Core.AssemblyInfo.cs
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\FitnessApp.Core.csproj.CoreCompileInputs.cache
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\FitnessApp.Core.sourcelink.json
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\FitnessApp.Core.dll
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\refint\FitnessApp.Core.dll
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\FitnessApp.Core.pdb
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.Core\obj\Debug\net8.0\ref\FitnessApp.Core.dll
