@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
 builder.Services.AddRegisterAPI(builder);
-builder.Services.AddRegisterService();
+builder.Services.AddRegisterService(builder.Configuration);
 builder.Services.AddRegisterDAL();
 
 
@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseGlobalException();
 app.MapControllers();
 app.UseAuthentication();
 app.UseAuthorization();

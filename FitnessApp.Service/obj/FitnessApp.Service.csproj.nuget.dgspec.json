@@ -216,6 +216,14 @@
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[11.3.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.10.0, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.10.0, )"
             }
           },
           "imports": [

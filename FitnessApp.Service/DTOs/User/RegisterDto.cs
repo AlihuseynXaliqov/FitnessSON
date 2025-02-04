@@ -46,6 +46,10 @@ public class RegisterValidator : AbstractValidator<RegisterDto>
         RuleFor(x => x.Password)
             .NotEmpty().WithMessage("Password cannot be empty")
             .NotNull().WithMessage("Password cannot be null")
+            .Matches("[A-Z]").WithMessage("Parolda en az 1 boyuk herf olmalidi")
+            .Matches("[a-z]").WithMessage("Parolda en az 1 kicik herf olmalidi")
+            .Matches("[0-9]").WithMessage("Parolda en az 1 reqem olmalidi")
+            .Matches("^[A-Za-z0-9]").WithMessage("Parolda en az 1 simvol olmalidi")
             .MinimumLength(8).WithMessage("Password must be at least 8 characters");
         
         RuleFor(x => x)

@@ -9,19 +9,19 @@ namespace FitnessApp.API.Controller;
 [ApiController]
 public class AuthController : Microsoft.AspNetCore.Mvc.Controller
 {
-    private readonly IUserService _userService;
+    private readonly IAuthService _authService;
 
-    public AuthController(IUserService userService)
+    public AuthController(IAuthService authService)
     {
-        _userService = userService;
+        _authService = authService;
     }
 
     [HttpPost("[Action]")]
-    public async Task<IActionResult> Register(RegisterDto dto)
+    public async Task<IActionResult> Register([FromForm]RegisterDto dto)
     {
         try
         {
-            await _userService.RegisterAsync(dto);
+            await _authService.RegisterAsync(dto);
             return Ok();
         }
         catch (Exception e)
@@ -36,7 +36,7 @@ public class AuthController : Microsoft.AspNetCore.Mvc.Controller
     {
         try
         {
-            await _userService.CreateRoleAsync();
+            await _authService.CreateRoleAsync();
             return Ok();    
         }
         catch (Exception e)
@@ -47,12 +47,12 @@ public class AuthController : Microsoft.AspNetCore.Mvc.Controller
     }
 
     [HttpPost("[Action]")]
-    public async Task<IActionResult> Login(LoginDto dto)
+    public async Task<IActionResult> Login([FromForm]LoginDto dto)
     {
         try
         {
             
-            return Ok(await _userService.LoginAsync(dto));    
+            return Ok(await _authService.LoginAsync(dto));    
         }
         catch (Exception e)
         {
@@ -60,4 +60,61 @@ public class AuthController : Microsoft.AspNetCore.Mvc.Controller
 
         }
     }
+
+    [HttpPost("[Action]")]
+    public async Task<IActionResult> Logout()
+    {
+        try
+        {
+            await _authService.LogoutAsync();
+            return Ok();    
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);    
+        }
+    }
+
+    [HttpPost("[Action]")]
+    public async Task<IActionResult> SumbitRegister([FromForm]SubmitRegisterDto dto)
+    {
+        try
+        {
+            return Ok( await _authService.SubmitRegistration(dto));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);    
+
+        }
+    }
+
+    [HttpPost("[Action]")]
+    public async Task<IActionResult> ForgetPassword([FromForm] ForgetPasswordDto dto)
+    {
+        try
+        {
+            return Ok(await _authService.ForgetPasswordAsync(dto));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+
+        }
+    }
+
+    [HttpPost("[Action]")]
+    public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordDto dto)
+    {
+        try
+        {
+            return Ok(await _authService.ResetPassword(dto));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+
+        }
+    }
+    
 }

@@ -44,6 +44,8 @@ public static class RegisterProgramAPI
             opt.Password.RequireUppercase = true;
             opt.Password.RequireDigit = true;
             opt.Password.RequiredLength = 8;
+            opt.SignIn.RequireConfirmedEmail = true;
+            opt.User.RequireUniqueEmail = true;
             opt.Lockout.MaxFailedAccessAttempts = 5;
             opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 

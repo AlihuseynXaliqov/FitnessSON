@@ -16,4 +16,5 @@ public class Trainer:BaseEntity
     public string InstagramUrl { get; set; }
     public string TwitterUrl { get; set; }
     
+    
 }
