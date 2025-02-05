@@ -14,3 +14,5 @@ C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.DAL\obj\Debug\net8.0\FitnessA
 C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.DAL\obj\Debug\net8.0\refint\FitnessApp.DAL.dll
 C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.DAL\obj\Debug\net8.0\FitnessApp.DAL.pdb
 C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.DAL\obj\Debug\net8.0\ref\FitnessApp.DAL.dll
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.DAL\bin\Debug\net8.0\FitnessApp.DAL.runtimeconfig.json
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.DAL\obj\Debug\net8.0\FitnessApp.DAL.genruntimeconfig.cache

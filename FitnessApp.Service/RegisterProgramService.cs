@@ -15,6 +15,8 @@ public static class RegisterProgramService
     public static void AddRegisterService(this IServiceCollection services,IConfiguration configuration)
     {
         services.AddScoped<IAuthService,AuthService>();
+        services.AddScoped<IClassService, ClassService>();
+        services.AddScoped<ITrainerService, TrainerService>();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddTransient<IMailService, MailService>();
         services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RegisterValidator>());

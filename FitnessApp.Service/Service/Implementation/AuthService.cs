@@ -46,7 +46,7 @@ public class AuthService : IAuthService
 
         var appUser = _mapper.Map<AppUser>(registerDto);
         var result = await _userManager.CreateAsync(appUser, registerDto.Password);
-        await _userManager.AddToRoleAsync(appUser, Roles.Member.ToString());
+        await _userManager.AddToRoleAsync(appUser, Roles.Admin.ToString());
         if (!result.Succeeded)
         {
             StringBuilder sb = new StringBuilder();

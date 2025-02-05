@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  fitnessapp_api:
+    build:
+      context: "C:\\Users\\smart\\RiderProjects\\FitnessApp"
+      dockerfile: "FitnessApp.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/FitnessApp.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "fitnessapp_api_image:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\smart\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API:/app:rw"
+    - "C:\\Users\\smart\\RiderProjects\\FitnessApp:/src:rw"
+    working_dir: "/app"

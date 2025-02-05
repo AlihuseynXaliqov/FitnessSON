@@ -9,6 +9,6 @@ public static class RegisterProgramDAL
     public static void AddRegisterDAL(this IServiceCollection services)
     {
         services.AddScoped<ITrainerRepository, TrainerRepository>();
-        
+        services.AddScoped<IClassRepository, ClassRepository>();
     }
 }
