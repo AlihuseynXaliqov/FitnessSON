@@ -18,21 +18,22 @@ public class RegisterValidator : AbstractValidator<RegisterDto>
 {
     public RegisterValidator()
     {
-        RuleFor(x => x.FirstName).NotNull().WithMessage("First name cannot be null")
-            .NotEmpty().WithMessage("First name cannot be empty")
-            .MaximumLength(20).WithMessage("First name must be between 4 and 20 characters")
-            .MinimumLength(4).WithMessage("First name must be between 4 and 20 characters");
+        RuleFor(x => x.FirstName)
+            .NotNull().WithMessage("Ad boş ola bilməz")
+            .NotEmpty().WithMessage("Ad boş ola bilməz")
+            .MaximumLength(20).WithMessage("Ad ən çox 20 simvoldan ibarət ola bilər")
+            .MinimumLength(4).WithMessage("Ad ən çox 4 simvoldan ibarət ola bilər");
         
-        RuleFor(x=>x.LastName)
-            .NotEmpty().WithMessage("Last name cannot be empty")
-            .NotNull().WithMessage("Last name cannot be null")
-            .MaximumLength(20).WithMessage("First name must be between 4 and 20 characters")
-            .MinimumLength(4).WithMessage("First name must be between 4 and 20 characters");
-        RuleFor(x=>x.Username)
-            .NotNull().WithMessage("Username cannot be null")
-            .NotEmpty().WithMessage("Username name cannot be empty")
-            .MaximumLength(20).WithMessage("Username name must be between 4 and 20 characters")
-            .MinimumLength(3).WithMessage("Username name must be between 3 and 20 characters");
+        RuleFor(x => x.LastName)
+            .NotNull().WithMessage("Soyad boş ola bilməz")
+            .NotEmpty().WithMessage("Soyad boş ola bilməz")
+            .MaximumLength(20).WithMessage("Soyad ən çox 20 simvoldan ibarət ola bilər")
+            .MinimumLength(4).WithMessage("Soyad ən çox 4 simvoldan ibarət ola bilər");     
+        RuleFor(x => x.LastName)
+            .NotNull().WithMessage("İstifadəçi ad boş ola bilməz")
+            .NotEmpty().WithMessage("İstifadəçi ad boş ola bilməz")
+            .MaximumLength(20).WithMessage("İstifadəçi ad ən çox 20 simvoldan ibarət ola bilər")
+            .MinimumLength(4).WithMessage("İstifadəçi ad ən çox 4 simvoldan ibarət ola bilər");   
         RuleFor(x => x.Email)
             .NotEmpty()
             .NotNull()

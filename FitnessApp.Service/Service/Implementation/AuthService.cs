@@ -100,7 +100,7 @@ public class AuthService : IAuthService
         user.EmailConfirmed = true;
         user.ConfirmKey = null;
         await _context.SaveChangesAsync();
-        return "Email confirmed";
+        return "Email uğurla təsdiqləndi!";
     }
 
     public async Task CreateRoleAsync()

@@ -1,4 +1,5 @@
-﻿using FitnessApp.Core;
+﻿using System.Reflection;
+using FitnessApp.Core;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,12 @@ public class AppDbContext: IdentityDbContext<AppUser>
     {
         
     }
+    public DbSet<Trainer> Trainers { get; set; }
+    public DbSet<Classes> Classes { get; set; }
     
-    
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(builder);
+    }
 }
