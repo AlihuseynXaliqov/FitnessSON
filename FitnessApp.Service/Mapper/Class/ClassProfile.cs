@@ -9,8 +9,8 @@ public class ClassProfile:Profile
     public ClassProfile()
     {
         CreateMap<CreateClassDto, Classes>().ReverseMap();
-        CreateMap<UpdateClassDto, Classes>().ReverseMap();
         CreateMap<GetClassDto, Classes>().ReverseMap();
+        CreateMap<UpdateClassDto, GetClassDto>().ReverseMap();
 
     }
 }

@@ -108,16 +108,10 @@ namespace FitnessApp.DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Day")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
-
-                    b.Property<TimeSpan>("EndTime")
-                        .HasColumnType("interval");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -131,15 +125,53 @@ namespace FitnessApp.DAL.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
-                    b.Property<TimeSpan>("StartTime")
-                        .HasColumnType("interval");
-
-                    b.Property<DateTime>("UpdateAt")
+                    b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
                     b.ToTable("Classes");
+                });
+
+            modelBuilder.Entity("FitnessApp.Core.Schedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("integer");
+
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("interval");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("interval");
+
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdateAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("TrainerId");
+
+                    b.ToTable("Schedules");
                 });
 
             modelBuilder.Entity("FitnessApp.Core.Trainer", b =>
@@ -205,7 +237,7 @@ namespace FitnessApp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("UpdateAt")
+                    b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<double>("Weight")
@@ -236,7 +268,7 @@ namespace FitnessApp.DAL.Migrations
                     b.Property<int>("TrainerId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("UpdateAt")
+                    b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -380,6 +412,25 @@ namespace FitnessApp.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FitnessApp.Core.Schedule", b =>
+                {
+                    b.HasOne("FitnessApp.Core.Classes", "Class")
+                        .WithMany("Schedules")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FitnessApp.Core.Trainer", "Trainer")
+                        .WithMany("Schedules")
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Trainer");
+                });
+
             modelBuilder.Entity("FitnessApp.Core.TrainersClasses", b =>
                 {
                     b.HasOne("FitnessApp.Core.Classes", "Class")
@@ -452,11 +503,15 @@ namespace FitnessApp.DAL.Migrations
 
             modelBuilder.Entity("FitnessApp.Core.Classes", b =>
                 {
+                    b.Navigation("Schedules");
+
                     b.Navigation("TrainersClasses");
                 });
 
             modelBuilder.Entity("FitnessApp.Core.Trainer", b =>
                 {
+                    b.Navigation("Schedules");
+
                     b.Navigation("TrainersClasses");
                 });
 #pragma warning restore 612, 618

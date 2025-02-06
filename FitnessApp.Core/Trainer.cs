@@ -20,6 +20,6 @@ public class Trainer:BaseEntity
     public string TwitterUrl { get; set; }
     
     public ICollection<TrainersClasses> TrainersClasses { get; set; }
-
+    public ICollection<Schedule> Schedules { get; set; }
     
 }

@@ -10,5 +10,6 @@ public class TrainerClassesConfiguration:IEntityTypeConfiguration<TrainersClasse
     {
         builder.HasOne(x => x.Trainer).WithMany(x => x.TrainersClasses).HasForeignKey(x => x.TrainerId);
         builder.HasOne(x => x.Class).WithMany(x => x.TrainersClasses).HasForeignKey(x => x.ClassId);
+        
     }
 }

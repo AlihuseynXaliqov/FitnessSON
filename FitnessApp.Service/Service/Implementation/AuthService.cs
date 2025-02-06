@@ -26,7 +26,7 @@ public class AuthService : IAuthService
     private readonly IMailService _mailService;
 
     public AuthService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper,
-        RoleManager<IdentityRole> roleManager,IConfiguration config,AppDbContext context,IMailService mailService)
+        RoleManager<IdentityRole> roleManager, IConfiguration config, AppDbContext context, IMailService mailService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -59,10 +59,10 @@ public class AuthService : IAuthService
         }
 
         var token = _userManager.GenerateEmailConfirmationTokenAsync(appUser);
-        var confirmKey=new Random().Next(100000,999999).ToString();
-        appUser.ConfirmKey=confirmKey;
+        var confirmKey = new Random().Next(100000, 999999).ToString();
+        appUser.ConfirmKey = confirmKey;
         await _context.SaveChangesAsync();
-        var link = $"https://localhost:5179/submit-registration?email={registerDto.Email}&token={token}";
+        var link = $"http://localhost:5179/submit-registration?email={registerDto.Email}&token={token}";
 
         MailRequest mailRequest = new MailRequest()
         {
@@ -72,7 +72,6 @@ public class AuthService : IAuthService
         };
 
         await _mailService.SendEmailAsync(mailRequest);
-        
     }
 
     public async Task<string> SubmitRegistration(SubmitRegisterDto dto)
@@ -90,13 +89,14 @@ public class AuthService : IAuthService
 
         if (string.IsNullOrEmpty(user.ConfirmKey))
         {
-            throw new RegisterException("Tesdiq kodunuz movcud deyil ve ya artiq istifade edilib",400);
+            throw new RegisterException("Tesdiq kodunuz movcud deyil ve ya artiq istifade edilib", 400);
         }
 
         if (user.ConfirmKey != dto.ConfirmKey)
         {
-            throw new RegisterException("Tesdiq kodunuz duzgun deyil",400);
+            throw new RegisterException("Tesdiq kodunuz duzgun deyil", 400);
         }
+
         user.EmailConfirmed = true;
         user.ConfirmKey = null;
         await _context.SaveChangesAsync();
@@ -113,38 +113,53 @@ public class AuthService : IAuthService
             });
         }
     }
+
+
     public async Task<string> LoginAsync(LoginDto loginDto)
     {
-        var user= await _userManager.FindByNameAsync(loginDto.UsernameOrEmail)
-            ?? await _userManager.FindByEmailAsync(loginDto.UsernameOrEmail);
+        var user = await _userManager.FindByNameAsync(loginDto.UsernameOrEmail)
+                   ?? await _userManager.FindByEmailAsync(loginDto.UsernameOrEmail);
         if (user == null) throw new NotFoundException();
         if (!user.EmailConfirmed)
         {
-           await _userManager.DeleteAsync(user);
-            throw new LoginException("Email duzgun deyil,yeniden qeydiyyatdan kecin",400);
+            await _userManager.DeleteAsync(user);
+            throw new LoginException("Email düzgün deyil, yenidən qeydiyyatdan keçin", 400);
         }
-        var result= await _userManager.CheckPasswordAsync(user, loginDto.Password);
-        if (!result) throw new LoginException("Melumatlar sehvdir",400);
 
-        var _claims = new[]
+        var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
+        if (!result) throw new LoginException("Məlumatlar səhvdir", 400);
+
+// 🛠 İstifadəçinin rollarını əldə edin
+        var roles = await _userManager.GetRolesAsync(user);
+
+// 🛠 Claim-lərə rolları əlavə edin
+        var _claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.Name, user.UserName)
         };
+
+// 🛠 Rolları tokenə əlavə edin
+        foreach (var role in roles)
+        {
+            _claims.Add(new Claim(ClaimTypes.Role, role)); // ← Burada rol əlavə edirik
+        }
+
+// 🛠 JWT yaratmaq üçün Security Key və Signing Credentials
         SecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SecurityKey"]));
-        SigningCredentials signingCredentials= new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
+        SigningCredentials signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+// 🛠 Token yaradılması
         JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
             issuer: _config["JWT:Issuer"],
             audience: _config["JWT:Audience"],
-            claims: _claims,
-            signingCredentials:signingCredentials,
-            expires: DateTime.UtcNow.AddMinutes(5)
+            claims: _claims, // 🔥 Claim-lərə rollar da daxil oldu!
+            signingCredentials: signingCredentials,
+            expires: DateTime.UtcNow.AddMinutes(60)
         );
 
-        var token =new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-        return token;
-
-
+// 🛠 Tokeni string olaraq qaytarın
+        return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
     }
 
     public async Task<string> ForgetPasswordAsync(ForgetPasswordDto dto)
@@ -154,8 +169,9 @@ public class AuthService : IAuthService
         {
             throw new NotFoundException();
         }
+
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-        var link = $"https://localhost:5179/reset-password?email={dto.Email}&token={token}";
+        var link = $"http://localhost:5179/reset-password?email={dto.Email}&token={token}";
         MailRequest mailRequest = new MailRequest()
         {
             ToEmail = dto.Email,
@@ -164,8 +180,8 @@ public class AuthService : IAuthService
         };
         await _mailService.SendEmailAsync(mailRequest);
         return $"Bu emailli hesab movcuddursa, yenileme linki gonderilecek!";
-    
     }
+
     public async Task<string> ResetPassword(ResetPasswordDto dto)
     {
         var user = await _userManager.FindByEmailAsync(dto.Email);
@@ -173,11 +189,13 @@ public class AuthService : IAuthService
         {
             throw new NotFoundException();
         }
+
         var result = await _userManager.ResetPasswordAsync(user, dto.Token, dto.Password);
         if (!result.Succeeded)
         {
             throw new ResetPasswordException("Şifrəniz yenilənmədi. Yenidən cəhd edin!", 404);
         }
+
         return "Şifrəniz uğurla yeniləndi!";
     }
 

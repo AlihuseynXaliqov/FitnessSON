@@ -23,5 +23,8 @@ public class TrainerConfiguration:IEntityTypeConfiguration<Trainer>
         builder.Property(x=>x.InstagramUrl).IsRequired();
         builder.Property(x=>x.TwitterUrl).IsRequired();
 
+        builder.HasMany(t => t.TrainersClasses)
+            .WithOne(tc => tc.Trainer)
+            .HasForeignKey(tc => tc.TrainerId);
     }
 }

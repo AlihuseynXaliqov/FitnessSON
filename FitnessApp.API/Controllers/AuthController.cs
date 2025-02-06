@@ -1,5 +1,6 @@
 ﻿using FitnessApp.Service.DTOs.User;
 using FitnessApp.Service.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.API.Controllers;
@@ -15,6 +16,16 @@ public class AuthController : ControllerBase
         _authService = authService;
     }
 
+    [Authorize]
+    [HttpGet("test-auth")]
+    public IActionResult TestAuth()
+    {
+        var user = HttpContext.User;
+        Console.WriteLine($"🔐 User authenticated: {user.Identity.IsAuthenticated}");
+        return Ok(new { Authenticated = user.Identity.IsAuthenticated });
+    }
+
+    
     [HttpPost("[Action]")]
     public async Task<IActionResult> Register([FromForm]RegisterDto dto)
     {

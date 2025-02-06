@@ -13,6 +13,8 @@ public class AppDbContext: IdentityDbContext<AppUser>
     }
     public DbSet<Trainer> Trainers { get; set; }
     public DbSet<Classes> Classes { get; set; }
+    public DbSet<TrainersClasses> TrainersClasses { get; set; }
+    public DbSet<Schedule> Schedules { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

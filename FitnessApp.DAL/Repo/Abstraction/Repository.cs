@@ -20,16 +20,18 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:BaseEntity,n
        return entity;
     }
 
-    public void UpdateAsync(TEntity entity)
+    public void Update(TEntity entity)
     {
+        entity.UpdateAt=DateTime.UtcNow;
          Table.Update(entity);
     }
 
-    public void DeleteAsync(TEntity entity)
+    public void Delete(TEntity entity)
     {
         entity.IsDeleted = true;
         Table.Update(entity);
     }
+
 
     public async Task<TEntity> GetByIdAsync(int id)
     {

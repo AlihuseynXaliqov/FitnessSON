@@ -17,76 +17,83 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
-builder.Services.AddAuthorization();
-
-builder.Services.AddAuthentication(opt =>
-    {
-        opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(opt =>
-    {
-        opt.TokenValidationParameters = new TokenValidationParameters()
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateIssuerSigningKey = true,
-           
-            ValidIssuer = builder.Configuration["JWT:Issuer"],
-            ValidAudience = builder.Configuration["JWT:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecurityKey"]))
-        };
-    });
-
 
 //Add database info
 builder.Services.AddDbContext<AppDbContext>
     (opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("default")));
 
 //Add identity info
-builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
-{
-    opt.Password.RequireNonAlphanumeric = true;
-    opt.Password.RequireLowercase = true;
-    opt.Password.RequireUppercase = true;
-    opt.Password.RequireDigit = true;
-    opt.Password.RequiredLength = 8;
-    opt.SignIn.RequireConfirmedEmail = true;
-    opt.User.RequireUniqueEmail = true;
-    opt.Lockout.MaxFailedAccessAttempts = 5;
-    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
-
-//Add swagger info
-builder.Services.AddSwaggerGen(c =>
-{
-    c.AddSecurityDefinition("JWT", new OpenApiSecurityScheme
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     {
-        Name = "Authorization",
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer",
-        BearerFormat = "JWT",
-        In = ParameterLocation.Header
-    });
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8;
+        options.SignIn.RequireConfirmedEmail = false;
+        options.User.RequireUniqueEmail = true;
+        options.Lockout.MaxFailedAccessAttempts = 5;
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    })
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
+builder.Services.AddAuthentication(opt =>
             {
-                Reference = new OpenApiReference
+                opt.DefaultAuthenticateScheme=JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme=JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(opt =>
+            {
+                opt.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "JWT"
-                },
-                Scheme = "bearer",
-                Name = "JWT",
-                In = ParameterLocation.Header,
-            },
-            new string[] { }
-        }
-    });
-});
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true, // <-- Əlavə et!
+                    ClockSkew = TimeSpan.Zero, // <-- Token vaxtını dəqiq yoxlayır
+                    ValidAudience = builder.Configuration["JWT:Audience"],
+                    ValidIssuer = builder.Configuration["JWT:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecurityKey"]))
+                };
+
+            });
+
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv6", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                      Enter 'Bearer' [space] and then your token in the text input below.
+                      \r\n\r\nExample: 'Bearer 12345abcdef'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+
+                        },
+                        new List<string>()
+                    }
+                });
+            });
 
 //Add mapper info
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -95,7 +102,7 @@ builder.Services.AddRegisterDAL();
 
 
 var app = builder.Build();
-
+app.UseGlobalException();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -103,10 +110,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseGlobalException();
 
+app.UseHttpsRedirection();
+
+
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
 
 app.Run();
