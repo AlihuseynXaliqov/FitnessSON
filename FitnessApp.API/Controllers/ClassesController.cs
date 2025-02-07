@@ -18,14 +18,14 @@ public class ClassesController : ControllerBase
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> CreateClass(CreateClassDto dto)
+    public async Task<IActionResult> CreateClass([FromForm]CreateClassDto dto)
     {
         await _classService.CreateClass(dto);
         return StatusCode(201);
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> UpdateClass(UpdateClassDto dto)
+    public async Task<IActionResult> UpdateClass([FromForm]UpdateClassDto dto)
     {
         await _classService.UpdateClass(dto);
         return StatusCode(200);

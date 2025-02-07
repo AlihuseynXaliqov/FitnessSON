@@ -10,5 +10,6 @@ public static class RegisterProgramDAL
     {
         services.AddScoped<ITrainerRepository, TrainerRepository>();
         services.AddScoped<IClassRepository, ClassRepository>();
+        services.AddScoped<IScheduleRepository, ScheduleRepository>();
     }
 }

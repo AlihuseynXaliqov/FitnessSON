@@ -1,10 +1,12 @@
 ﻿using FitnessApp.Core;
+using FitnessApp.Service.DTOs.Trainer;
 
 namespace FitnessApp.Service.Service.Interface;
 
 public interface ITrainerService
 {
-    /*
-    Task<Trainer> CreateTrainerAsync(Trainer trainer);
-*/
+    Task<CreateTrainerDto> CreateTrainerAsync(CreateTrainerDto dto);
+    Task<GetTrainerDto> GetTrainerByIdAsync(int Id);
+    ICollection<GetTrainerDto> GetTrainers();
+    Task<UpdateTrainerDto> UpdateTrainerAsync(UpdateTrainerDto dto);
 }

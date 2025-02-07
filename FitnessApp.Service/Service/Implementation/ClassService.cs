@@ -3,6 +3,7 @@ using FitnessApp.Core;
 using FitnessApp.DAL;
 using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Class;
+using FitnessApp.Service.Helper.Exception.Base;
 using FitnessApp.Service.Helper.Exception.Classes;
 using FitnessApp.Service.Service.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -52,7 +53,7 @@ public class ClassService : IClassService
 
     public async Task<GetClassDto> GetClass(int id)
     {
-        if (id <= 0) throw new ClassException("Id menfi ve ya sifir ola bilmez", 404);
+        if (id <= 0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
         var classes = await _repository.GetByIdAsync(id);
         var classDto = _mapper.Map<GetClassDto>(classes);
         return classDto;
@@ -67,7 +68,7 @@ public class ClassService : IClassService
     public async Task UpdateClass(UpdateClassDto updateClassDto)
     {
         if (updateClassDto.Id <= 0)
-            throw new ClassException("Id menfi ve ya sifir ola bilmez", 404);
+            throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
 
         var oldClass = await _repository.Table.AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == updateClassDto.Id);
