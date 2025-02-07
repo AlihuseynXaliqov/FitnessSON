@@ -41,6 +41,14 @@ public class TrainerController: ControllerBase
     {
         return StatusCode(200, await _trainerService.UpdateTrainerAsync(dto));
     }
+
+    [HttpDelete("[action]")]
+    public async Task<IActionResult> DeleteTrainer(int id)
+    {
+        await _trainerService.Delete(id);
+        return Ok();
+    }
+    
     
     
 }

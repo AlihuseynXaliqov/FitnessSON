@@ -8,5 +8,7 @@ public class ScheduleProfile: Profile
     public ScheduleProfile()
     {
         CreateMap<Core.Schedule, CreateScheduleDto>().ReverseMap();
+        CreateMap<Core.Schedule, GetScheduleDto>().ReverseMap();
+        CreateMap<Core.Schedule,UpdateScheduleDto>().ReverseMap();
     }
 }

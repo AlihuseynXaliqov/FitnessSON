@@ -68,4 +68,12 @@ public class TrainerService : ITrainerService
 
         return _mapper.Map<UpdateTrainerDto>(trainer);
     }
+
+    public async Task Delete(int Id)
+    {
+        var trainer = await GetTrainerByIdAsync(Id);
+        var oldTrainer=_mapper.Map<Trainer>(trainer);
+        _repository.Delete(oldTrainer);
+        await _repository.SaveChangesAsync();
+    }
 }

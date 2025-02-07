@@ -24,7 +24,7 @@ public class ClassesController : ControllerBase
         return StatusCode(201);
     }
 
-    [HttpPost("[action]")]
+    [HttpPut("[action]")]
     public async Task<IActionResult> UpdateClass([FromForm]UpdateClassDto dto)
     {
         await _classService.UpdateClass(dto);

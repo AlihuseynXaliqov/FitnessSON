@@ -9,4 +9,5 @@ public interface ITrainerService
     Task<GetTrainerDto> GetTrainerByIdAsync(int Id);
     ICollection<GetTrainerDto> GetTrainers();
     Task<UpdateTrainerDto> UpdateTrainerAsync(UpdateTrainerDto dto);
+    Task Delete(int Id);
 }
