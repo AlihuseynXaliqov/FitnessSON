@@ -17,6 +17,7 @@ public static class RegisterProgramService
         services.AddScoped<IAuthService,AuthService>();
         services.AddScoped<IClassService, ClassService>();
         services.AddScoped<ITrainerService, TrainerService>();
+        services.AddScoped<IClientService, ClientService>();
         services.AddScoped<IScheduleService, ScheduleService>();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddTransient<IMailService, MailService>();

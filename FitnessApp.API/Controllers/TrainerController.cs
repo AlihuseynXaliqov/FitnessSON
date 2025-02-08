@@ -18,31 +18,31 @@ public class TrainerController: ControllerBase
         _trainerService = trainerService;
     }
 
-    [HttpGet("[action]")]
+    [HttpGet]
     public IActionResult GetAllTrainers()
     {
         return Ok(_trainerService.GetTrainers());
     }
 
-    [HttpGet("[action]")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetTrainerById(int id)
     {
         return Ok(await _trainerService.GetTrainerByIdAsync(id));
     }
 
-    [HttpPost("[action]")]
+    [HttpPost("create")]
     public async Task<IActionResult> AddTrainer([FromForm]CreateTrainerDto dto)
     {
         return StatusCode(201, await _trainerService.CreateTrainerAsync(dto));
     }
 
-    [HttpPut("[action]")]
+    [HttpPut("update/{id}")]
     public async Task<IActionResult> UpdateTrainer([FromForm] UpdateTrainerDto dto)
     {
         return StatusCode(200, await _trainerService.UpdateTrainerAsync(dto));
     }
 
-    [HttpDelete("[action]")]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteTrainer(int id)
     {
         await _trainerService.Delete(id);

@@ -54,7 +54,7 @@ public class ScheduleService : IScheduleService
         var schedule = await _repository
             .GetAll("Class", "Trainer")
             .AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id);
-        if (schedule == null) throw new ScheduleException("Cədvəl tapılmadı!", 404);
+        if (schedule == null) throw new NotFoundException("Cədvəl tapılmadı!", 404);
         var scheduleDto = _mapper.Map<GetScheduleDto>(schedule);
         return scheduleDto;
     }
@@ -70,7 +70,7 @@ public class ScheduleService : IScheduleService
         var schedule = _repository.GetAll("Class", "Trainer")
             .FirstOrDefault(x => x.Id == updateScheduleDto.Id);
 
-        if(schedule == null) throw new ScheduleException("Cədvəl tapılmadı!", 404);
+        if(schedule == null) throw new NotFoundException("Cədvəl tapılmadı!", 404);
         
         bool toqqusma = await _dbContext.Schedules.AnyAsync(x =>
             x.IsDeleted&&

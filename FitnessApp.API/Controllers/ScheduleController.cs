@@ -18,8 +18,20 @@ public class ScheduleController:ControllerBase
     {
         _scheduleService = scheduleService;
     }
+    
+    [HttpGet]
+    public ICollection<GetScheduleDto> GetSchedules()
+    {
+        return _scheduleService.GetSchedules();
+    }
 
-    [HttpPost("[action]")]
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetSchedule(int id)
+    {
+        return Ok(await _scheduleService.GetSchedule(id));        
+    }
+
+    [HttpPost("create")]
     public async Task<IActionResult> Create(CreateScheduleDto dto)
     {
      var schedule=await _scheduleService.CreateSchedule(dto);
@@ -30,20 +42,8 @@ public class ScheduleController:ControllerBase
 
      return StatusCode(201, "Cədvəl uğurla əlavə edildi");
     }
-
-    [HttpGet("[action]")]
-    public async Task<IActionResult> GetSchedule(int id)
-    {
-        return Ok(await _scheduleService.GetSchedule(id));        
-    }
-
-    [HttpGet("[action]")]
-    public ICollection<GetScheduleDto> GetSchedules()
-    {
-        return _scheduleService.GetSchedules();
-    }
-
-    [HttpPut("[action]")]
+    
+    [HttpPut("update/{id}")]
     public async Task<IActionResult> Update(UpdateScheduleDto dto)
     {
         var schedule = await _scheduleService.UpdateSchedule(dto);
@@ -55,7 +55,7 @@ public class ScheduleController:ControllerBase
         return StatusCode(201, "Cədvəl uğurla dəyişdirildi");
     }
 
-    [HttpDelete("[action]")]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         await _scheduleService.DeleteSchedule(id);

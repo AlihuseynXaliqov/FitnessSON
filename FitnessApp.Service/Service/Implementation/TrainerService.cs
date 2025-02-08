@@ -33,6 +33,7 @@ public class TrainerService : ITrainerService
         if (Id <= 0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
         var trainer = await _repository.GetAll("TrainersClasses", "TrainersClasses.Class").AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == Id);
+        if(trainer == null) throw new  NotFoundException("Məşqçi tapılmadı", 404);
         return _mapper.Map<GetTrainerDto>(trainer);
     }
 
@@ -52,7 +53,7 @@ public class TrainerService : ITrainerService
         var trainer = await _repository.GetAll("TrainersClasses")
             .FirstOrDefaultAsync(x => x.Id == dto.Id);
 
-        if (trainer == null) throw new TrainerException("Məşqçi tapılmadı", 404);
+        if (trainer == null) throw new NotFoundException("Məşqçi tapılmadı", 404);
 
         _mapper.Map(dto, trainer);
 

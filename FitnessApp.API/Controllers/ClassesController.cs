@@ -17,34 +17,33 @@ public class ClassesController : ControllerBase
         _classService = classService;
     }
 
-    [HttpPost("[action]")]
+    [HttpGet]
+    public ICollection<GetClassDto> GetAllClasses()
+    {
+        return _classService.GetAllClasses();
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetByIdClasses(int id)
+    {
+        return StatusCode(200, await _classService.GetClass(id));
+    }
+    
+    [HttpPost("create")]
     public async Task<IActionResult> CreateClass([FromForm]CreateClassDto dto)
     {
         await _classService.CreateClass(dto);
         return StatusCode(201);
     }
 
-    [HttpPut("[action]")]
+    [HttpPut("update/{id}")]
     public async Task<IActionResult> UpdateClass([FromForm]UpdateClassDto dto)
     {
         await _classService.UpdateClass(dto);
         return StatusCode(200);
     }
-
-
-    [HttpGet("[action]")]
-    public async Task<IActionResult> GetByIdClasses(int id)
-    {
-        return StatusCode(200, await _classService.GetClass(id));
-    }
-
-    [HttpGet("[action]")]
-    public ICollection<GetClassDto> GetAllClasses()
-    {
-        return _classService.GetAllClasses();
-    }
-
-    [HttpDelete("[action]")]
+    
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteClass(int id)
     {
         await _classService.DeleteClass(id);

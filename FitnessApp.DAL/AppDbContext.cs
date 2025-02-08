@@ -15,6 +15,7 @@ public class AppDbContext: IdentityDbContext<AppUser>
     public DbSet<Classes> Classes { get; set; }
     public DbSet<TrainersClasses> TrainersClasses { get; set; }
     public DbSet<Schedule> Schedules { get; set; }
+    public DbSet<ClientFeedBack> FeedBacks { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

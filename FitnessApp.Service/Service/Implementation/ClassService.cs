@@ -55,6 +55,7 @@ public class ClassService : IClassService
     {
         if (id <= 0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
         var classes = await _repository.GetByIdAsync(id);
+        if (classes == null) throw new NotFoundException("Bele idman novu movcud deyil", 404);
         var classDto = _mapper.Map<GetClassDto>(classes);
         return classDto;
     }
@@ -74,7 +75,7 @@ public class ClassService : IClassService
             .FirstOrDefaultAsync(x => x.Id == updateClassDto.Id);
 
         if (oldClass == null)
-            throw new ClassException("Bele idman novu movcud deyil", 404);
+            throw new NotFoundException("Bele idman novu movcud deyil", 404);
 
         var deletedClass = await _repository.Table.AsNoTracking()
             .FirstOrDefaultAsync(x => x.Name == updateClassDto.Name && x.IsDeleted);
