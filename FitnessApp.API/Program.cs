@@ -19,14 +19,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
 //Add database info
+/*
 builder.Services.AddDbContext<AppDbContext>
     (opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("default")));
+    */
 
 
-/*builder.Services.AddDbContext<AppDbContext>(opt =>
+builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("deploy"));
-});*/
+});
 
 //Add identity info
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -110,7 +112,8 @@ app.UseGlobalException();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-/*builder.Services.AddCors(options =>
+/*
+builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
         policy =>
@@ -124,7 +127,7 @@ app.UseSwaggerUI();
 app.UseCors("AllowAll");*/
 app.UseHttpsRedirection();
 
-
+app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

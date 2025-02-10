@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Upload\\3ca52b14-6eaf-4d18-944a-69576e296865download (2).jpeg",
+      "PackagePath": "staticwebassets\\Upload\\3ca52b14-6eaf-4d18-944a-69576e296865download (2).jpeg"
+    },
+    {
+      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Upload\\8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).jpeg",
+      "PackagePath": "staticwebassets\\Upload\\8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).jpeg"
+    },
+    {
+      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\agent\\21498069-2040-486d-9636-8507b164b824download (2).jpeg",
+      "PackagePath": "staticwebassets\\agent\\21498069-2040-486d-9636-8507b164b824download (2).jpeg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FitnessApp.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FitnessApp.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.FitnessApp.API.props",
+      "PackagePath": "build\\FitnessApp.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.FitnessApp.API.props",
+      "PackagePath": "buildMultiTargeting\\FitnessApp.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.FitnessApp.API.props",
+      "PackagePath": "buildTransitive\\FitnessApp.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

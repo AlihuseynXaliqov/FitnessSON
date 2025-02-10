@@ -1,0 +1,40 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/FitnessApp.API/agent/21498069-2040-486d-9636-8507b164b824download (2).evzvdk2s7k.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\agent\21498069-2040-486d-9636-8507b164b824download (2).jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"evzvdk2s7k"},{"Name":"integrity","Value":"sha256-phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw="},{"Name":"label","Value":"_content/FitnessApp.API/agent/21498069-2040-486d-9636-8507b164b824download (2).jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5015"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 09 Feb 2025 19:20:42 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FitnessApp.API/agent/21498069-2040-486d-9636-8507b164b824download (2).jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\agent\21498069-2040-486d-9636-8507b164b824download (2).jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"5015"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 09 Feb 2025 19:20:42 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FitnessApp.API/Upload/3ca52b14-6eaf-4d18-944a-69576e296865download (2).evzvdk2s7k.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Upload\3ca52b14-6eaf-4d18-944a-69576e296865download (2).jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"evzvdk2s7k"},{"Name":"integrity","Value":"sha256-phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw="},{"Name":"label","Value":"_content/FitnessApp.API/Upload/3ca52b14-6eaf-4d18-944a-69576e296865download (2).jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5015"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 09 Feb 2025 18:55:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FitnessApp.API/Upload/3ca52b14-6eaf-4d18-944a-69576e296865download (2).jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Upload\3ca52b14-6eaf-4d18-944a-69576e296865download (2).jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"5015"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 09 Feb 2025 18:55:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FitnessApp.API/Upload/8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).evzvdk2s7k.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Upload\8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"evzvdk2s7k"},{"Name":"integrity","Value":"sha256-phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw="},{"Name":"label","Value":"_content/FitnessApp.API/Upload/8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5015"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 09 Feb 2025 18:57:23 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FitnessApp.API/Upload/8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Upload\8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"5015"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022phsTWnhxdry7w2suQodY5SELhGLLwFiwKhi/AOSJNxw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 09 Feb 2025 18:57:23 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

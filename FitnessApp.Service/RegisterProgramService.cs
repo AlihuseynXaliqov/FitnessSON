@@ -19,6 +19,7 @@ public static class RegisterProgramService
         services.AddScoped<ITrainerService, TrainerService>();
         services.AddScoped<IClientService, ClientService>();
         services.AddScoped<IScheduleService, ScheduleService>();
+        services.AddScoped<IFIleUploadService, FileUploadService>();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddTransient<IMailService, MailService>();
         services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RegisterValidator>());
