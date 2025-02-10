@@ -1,16 +1,20 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Upload\\3ca52b14-6eaf-4d18-944a-69576e296865download (2).jpeg",
-      "PackagePath": "staticwebassets\\Upload\\3ca52b14-6eaf-4d18-944a-69576e296865download (2).jpeg"
+      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Agent\\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg",
+      "PackagePath": "staticwebassets\\Agent\\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg"
     },
     {
-      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Upload\\8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).jpeg",
-      "PackagePath": "staticwebassets\\Upload\\8deb256d-75aa-4195-b8e9-76370c9b04e4download (2).jpeg"
+      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Post\\5e663e75-1838-4b43-92dc-936082e3fe8bdownload (22).jpeg",
+      "PackagePath": "staticwebassets\\Post\\5e663e75-1838-4b43-92dc-936082e3fe8bdownload (22).jpeg"
     },
     {
-      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\agent\\21498069-2040-486d-9636-8507b164b824download (2).jpeg",
-      "PackagePath": "staticwebassets\\agent\\21498069-2040-486d-9636-8507b164b824download (2).jpeg"
+      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Post\\7ed83913-760b-4202-9dca-5bcc3f526198download (3).jpeg",
+      "PackagePath": "staticwebassets\\Post\\7ed83913-760b-4202-9dca-5bcc3f526198download (3).jpeg"
+    },
+    {
+      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Post\\b983bba7-f91b-4df6-b3c1-f1209cbc266fdownload (1).jpeg",
+      "PackagePath": "staticwebassets\\Post\\b983bba7-f91b-4df6-b3c1-f1209cbc266fdownload (1).jpeg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FitnessApp.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

@@ -97,6 +97,7 @@ public class ScheduleService : IScheduleService
 
     public async Task DeleteSchedule(int Id)
     {
+        if (Id <= 0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
         var schedule = await GetSchedule(Id);
         var oldSchedule = _mapper.Map<Schedule>(schedule);
         _repository.Delete(oldSchedule);
