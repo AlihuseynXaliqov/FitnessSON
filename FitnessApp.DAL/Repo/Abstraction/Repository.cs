@@ -38,7 +38,7 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:BaseEntity,n
     }
 
 
-    public async Task<TEntity> GetByIdAsync(int id)
+    public async Task<TEntity?> GetByIdAsync(int id)
     {
        return await Table.AsNoTracking().FirstOrDefaultAsync(x=>x.Id == id && !x.IsDeleted);
     }

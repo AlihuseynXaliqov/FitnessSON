@@ -15,16 +15,17 @@ public class CreateFeedBackDtoValidator : AbstractValidator<CreateFeedBackDto>
     public CreateFeedBackDtoValidator()
     {
         RuleFor(x => x.ImageUrl)
-            .NotEmpty().WithMessage("ImageUrl cannot be empty.");
+            .NotEmpty().WithMessage("Şəkil URL-i boş ola bilməz.");
 
         RuleFor(x => x.Description)
-            .NotEmpty().WithMessage("Description cannot be empty.")
-            .MinimumLength(10).WithMessage("Description must be at least 10 characters long.");
+            .NotEmpty().WithMessage("Təsvir boş ola bilməz.")
+            .MinimumLength(10).WithMessage("Təsvir ən azı 10 simvoldan ibarət olmalıdır.");
 
         RuleFor(x => x.Rating)
-            .InclusiveBetween(1, 5).WithMessage("Rating must be between 1 and 5.");
+            .InclusiveBetween(1, 5).WithMessage("Qiymət 1 ilə 5 arasında olmalıdır.");
 
         RuleFor(x => x.UserId)
-            .NotEmpty().WithMessage("UserId cannot be empty.");
+            .NotEmpty().WithMessage("İstifadəçi ID-si boş ola bilməz.");
     }
+
 }

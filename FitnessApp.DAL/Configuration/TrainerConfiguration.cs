@@ -13,18 +13,17 @@ public class TrainerConfiguration:IEntityTypeConfiguration<Trainer>
         builder.Property(x=>x.Email).IsRequired();
         builder.Property(x=>x.ImageUrl).IsRequired();
         builder.Property(x=>x.PhoneNumber).IsRequired();
-        builder.Property(x=>x.Specialization).IsRequired();
         builder.Property(x=>x.Experience).IsRequired();
         builder.Property(x=>x.Biography).IsRequired();
         builder.Property(x=>x.Age).IsRequired();
         builder.Property(x=>x.Weight).IsRequired();
         builder.Property(x=>x.PhoneNumber).IsRequired();
-        builder.Property(x=>x.FacebookUrl).IsRequired();
-        builder.Property(x=>x.InstagramUrl).IsRequired();
-        builder.Property(x=>x.TwitterUrl).IsRequired();
+
 
         builder.HasMany(t => t.TrainersClasses)
             .WithOne(tc => tc.Trainer)
             .HasForeignKey(tc => tc.TrainerId);
+        
+        
     }
 }

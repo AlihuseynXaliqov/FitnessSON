@@ -8,7 +8,10 @@ public class ScheduleProfile: Profile
     public ScheduleProfile()
     {
         CreateMap<Core.Schedule, CreateScheduleDto>().ReverseMap();
-        CreateMap<Core.Schedule, GetScheduleDto>().ReverseMap();
+        CreateMap<GetScheduleDto, Core.Schedule>().ReverseMap()
+            .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.Class.Name))
+            .ForMember(dest => dest.TrainerFirstName, opt => opt.MapFrom(src => src.Trainer.FirstName))
+            .ForMember(dest => dest.TrainerLastName, opt => opt.MapFrom(src => src.Trainer.LastName));
         CreateMap<Core.Schedule,UpdateScheduleDto>().ReverseMap();
     }
 }

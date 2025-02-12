@@ -5,7 +5,9 @@ using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Class;
 using FitnessApp.Service.Helper.Exception.Base;
 using FitnessApp.Service.Helper.Exception.Classes;
+using FitnessApp.Service.Helper.UploadFile;
 using FitnessApp.Service.Service.Interface;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitnessApp.Service.Service.Implementation;
@@ -15,12 +17,14 @@ public class ClassService : IClassService
     private readonly AppDbContext _context;
     private readonly IClassRepository _repository;
     private readonly IMapper _mapper;
+    private readonly IWebHostEnvironment _web;
 
-    public ClassService(AppDbContext context, IClassRepository classRepository, IMapper mapper)
+    public ClassService(AppDbContext context, IClassRepository classRepository, IMapper mapper,IWebHostEnvironment web)
     {
         _context = context;
         _repository = classRepository;
         _mapper = mapper;
+        _web = web;
     }
 
     public async Task CreateClass(CreateClassDto createClassDto)
@@ -86,11 +90,13 @@ public class ClassService : IClassService
             deletedClass.UpdateAt = DateTime.UtcNow;
             deletedClass.Description = updateClassDto.Description;
             deletedClass.ImageUrl = updateClassDto.ImageUrl;
+            FileExtention.Delete(_web.WebRootPath,oldClass.ImageUrl);
             _context.Entry(deletedClass).State = EntityState.Detached; 
             _repository.Update(deletedClass);
         }
         else
         {
+            FileExtention.Delete(_web.WebRootPath,oldClass.ImageUrl);
             var newClass = _mapper.Map<GetClassDto>(updateClassDto);
             _repository.Update(_mapper.Map<Classes>(newClass));
         }
@@ -101,6 +107,7 @@ public class ClassService : IClassService
     public async Task DeleteClass(int id)
     {
         var classes = await GetClass(id);
+        FileExtention.Delete(_web.WebRootPath, classes.ImageUrl);
 
         _repository.SoftDelete(_mapper.Map<Classes>(classes));
         await _repository.SaveChangesAsync();

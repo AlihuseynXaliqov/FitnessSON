@@ -18,59 +18,5 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Agent\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Post\5e663e75-1838-4b43-92dc-936082e3fe8bdownload (22).jpeg'))">
-      <SourceType>Package</SourceType>
-      <SourceId>FitnessApp.API</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/FitnessApp.API</BasePath>
-      <RelativePath>Post/5e663e75-1838-4b43-92dc-936082e3fe8bdownload (22).jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>0qq0efp6ck</Fingerprint>
-      <Integrity>SAFh5Hx98/kBkma6NfbwgQj5Tred5mtM5ZLcO4b9Zj0=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Post\5e663e75-1838-4b43-92dc-936082e3fe8bdownload (22).jpeg'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Post\7ed83913-760b-4202-9dca-5bcc3f526198download (3).jpeg'))">
-      <SourceType>Package</SourceType>
-      <SourceId>FitnessApp.API</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/FitnessApp.API</BasePath>
-      <RelativePath>Post/7ed83913-760b-4202-9dca-5bcc3f526198download (3).jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nkh53mug1k</Fingerprint>
-      <Integrity>yTwcNh9o3jibtIyNfKGjub3Fgg4Dm2zNL2Vwriymt/g=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Post\7ed83913-760b-4202-9dca-5bcc3f526198download (3).jpeg'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Post\b983bba7-f91b-4df6-b3c1-f1209cbc266fdownload (1).jpeg'))">
-      <SourceType>Package</SourceType>
-      <SourceId>FitnessApp.API</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/FitnessApp.API</BasePath>
-      <RelativePath>Post/b983bba7-f91b-4df6-b3c1-f1209cbc266fdownload (1).jpeg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>bsr8panea7</Fingerprint>
-      <Integrity>q0+JZ+TVlec7HpJfjt+GqgW/f+q4vGk80kjd3IOV6Bk=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Post\b983bba7-f91b-4df6-b3c1-f1209cbc266fdownload (1).jpeg'))</OriginalItemSpec>
-    </StaticWebAsset>
   </ItemGroup>
 </Project>

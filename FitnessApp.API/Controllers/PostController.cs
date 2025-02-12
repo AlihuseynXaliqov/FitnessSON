@@ -7,19 +7,13 @@ namespace FitnessApp.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class PostController:ControllerBase
+public class PostController : ControllerBase
 {
     private readonly IPostService _service;
 
     public PostController(IPostService service)
     {
         _service = service;
-    }
-
-    [HttpPost("create")]
-    public async Task<IActionResult> Create(CreatePostDto dto)
-    {
-        return StatusCode(201,await _service.CreateAsync(dto));
     }
 
     [HttpGet]
@@ -34,11 +28,18 @@ public class PostController:ControllerBase
         return StatusCode(200, await _service.GetByIdAsync(id));
     }
 
+    [HttpPost("create")]
+    public async Task<IActionResult> Create(CreatePostDto dto)
+    {
+        return StatusCode(201, await _service.CreateAsync(dto));
+    }
+
+
     [HttpPut("update")]
     public async Task<IActionResult> Update(UpdatePostDto dto)
     {
-       await _service.UpdateAsync(dto);
-       return Ok();
+        await _service.UpdateAsync(dto);
+        return Ok();
     }
 
     [HttpDelete("delete/{id}")]
@@ -47,5 +48,4 @@ public class PostController:ControllerBase
         await _service.DeleteAsync(id);
         return Ok();
     }
-    
 }

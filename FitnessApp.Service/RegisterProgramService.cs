@@ -18,6 +18,7 @@ public static class RegisterProgramService
         services.AddScoped<IClassService, ClassService>();
         services.AddScoped<ITrainerService, TrainerService>();
         services.AddScoped<IClientService, ClientService>();
+        services.AddScoped<IPositionService, PositionService>();
         services.AddScoped<IPostService, PostService>();
         services.AddScoped<IScheduleService, ScheduleService>();
         services.AddScoped<IFIleUploadService, FileUploadService>();

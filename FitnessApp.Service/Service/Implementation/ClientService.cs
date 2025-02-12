@@ -3,7 +3,9 @@ using FitnessApp.Core;
 using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Client;
 using FitnessApp.Service.Helper.Exception.Base;
+using FitnessApp.Service.Helper.UploadFile;
 using FitnessApp.Service.Service.Interface;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,12 +16,14 @@ public class ClientService : IClientService
     private readonly IClientRepository _repository;
     private readonly UserManager<AppUser> _userManager;
     private readonly IMapper _mapper;
+    private readonly IWebHostEnvironment _web;
 
-    public ClientService(IClientRepository repository, UserManager<AppUser> userManager, IMapper mapper)
+    public ClientService(IClientRepository repository, UserManager<AppUser> userManager, IMapper mapper,IWebHostEnvironment web)
     {
         _repository = repository;
         _userManager = userManager;
         _mapper = mapper;
+        _web = web;
     }
 
     public async Task<CreateFeedBackDto> CreateAsync(CreateFeedBackDto dto)
@@ -53,6 +57,8 @@ public class ClientService : IClientService
         var feedback = await _repository.GetAll("User")
             .AsNoTracking().FirstOrDefaultAsync(x => x.Id == dto.Id);
         if (feedback == null) throw new NotFoundException("İstifadəçi tapılmadı!!!", 404);
+        FileExtention.Delete(_web.WebRootPath, feedback.ImageUrl);
+
         _mapper.Map(dto, feedback);
 
         _repository.Update(feedback);
@@ -64,6 +70,7 @@ public class ClientService : IClientService
         var feedback = await _repository.GetAll("User")
             .AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         if (feedback == null) throw new NotFoundException("İstifadəçi tapılmadı!!!", 404);
+        FileExtention.Delete(_web.WebRootPath, feedback.ImageUrl);
         _repository.Delete(feedback);
         await _repository.SaveChangesAsync();
     }

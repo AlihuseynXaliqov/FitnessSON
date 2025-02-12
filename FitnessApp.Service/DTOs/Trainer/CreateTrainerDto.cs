@@ -7,19 +7,13 @@ public class CreateTrainerDto
     public string FirstName { get; set; }  
     public string LastName { get; set; } 
     public string ImageUrl { get; set; }   
-    public string Specialization { get; set; }  // Mütəxəssisi olduğu sahə (Fitness, CrossFit və s.)
     public string Biography { get; set; }
-    public string Experience { get; set; }
+    public int Experience { get; set; }
     public int Age { get; set; }
     public double Weight { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
-    public string FacebookUrl { get; set; }
-    public string InstagramUrl { get; set; }
-    public string TwitterUrl { get; set; }
-    
-    
-    
+
     public List<int> ClassIds { get; set; } = new List<int>();
 }
 
@@ -38,14 +32,12 @@ public class CreateTrainerValidator : AbstractValidator<CreateTrainerDto>
             .MaximumLength(20).WithMessage("Soyad ən çox 20 simvoldan ibarət ola bilər");
 
         RuleFor(x => x.ImageUrl)
-            .NotEmpty().WithMessage("Şəkil linki boş ola bilməz")
-            .Must(BeAValidUrl).WithMessage("Şəkil linki düzgün formatda deyil");
-
-        RuleFor(x => x.Specialization)
-            .NotEmpty().WithMessage("Sahə boş ola bilməz");
+            .NotEmpty().WithMessage("Şəkil linki boş ola bilməz");
 
         RuleFor(x => x.Biography)
-            .NotEmpty().WithMessage("Məlumat hissəsi boş ola bilməz");
+            .NotEmpty().WithMessage("Məlumat hissəsi boş ola bilməz")
+            .MaximumLength(150).WithMessage("Məlumat hissəsi en cox 150 sozden ibaret olmalidi")
+            .MinimumLength(5).WithMessage("Məlumat hissəsi en az 5 herfden ibaret olmalidi");
 
         RuleFor(x => x.Experience)
             .NotEmpty().WithMessage("Təcrübə boş ola bilməz");
@@ -63,22 +55,7 @@ public class CreateTrainerValidator : AbstractValidator<CreateTrainerDto>
         RuleFor(x => x.PhoneNumber)
             .NotEmpty().WithMessage("Telefon nömrəsi boş ola bilməz")
             .Matches(@"^(?:\+994|0)\d{9}$").WithMessage("Telefon nömrəsi düzgün formatda deyil");
-
-        RuleFor(x => x.FacebookUrl)
-            .Must(BeAValidUrl).When(x => !string.IsNullOrWhiteSpace(x.FacebookUrl))
-            .WithMessage("Facebook linki düzgün formatda deyil");
-
-        RuleFor(x => x.InstagramUrl)
-            .Must(BeAValidUrl).When(x => !string.IsNullOrWhiteSpace(x.InstagramUrl))
-            .WithMessage("Instagram linki düzgün formatda deyil");
-
-        RuleFor(x => x.TwitterUrl)
-            .Must(BeAValidUrl).When(x => !string.IsNullOrWhiteSpace(x.TwitterUrl))
-            .WithMessage("Twitter linki düzgün formatda deyil");
+        
     }
 
-    private bool BeAValidUrl(string url)
-    {
-        return Uri.TryCreate(url, UriKind.Absolute, out _);
-    }
 }

@@ -18,16 +18,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
+/*
 //Add database info
 builder.Services.AddDbContext<AppDbContext>
     (opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("default")));
+    */
     
 
 
-/*builder.Services.AddDbContext<AppDbContext>(opt =>
+builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("deploy"));
-});*/
+});
 
 //Add identity info
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>

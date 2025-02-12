@@ -4,7 +4,9 @@ using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Trainer;
 using FitnessApp.Service.Helper.Exception.Base;
 using FitnessApp.Service.Helper.Exception.Trainer;
+using FitnessApp.Service.Helper.UploadFile;
 using FitnessApp.Service.Service.Interface;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitnessApp.Service.Service.Implementation;
@@ -13,11 +15,13 @@ public class TrainerService : ITrainerService
 {
     private readonly IMapper _mapper;
     private readonly ITrainerRepository _repository;
+    private readonly IWebHostEnvironment _web;
 
-    public TrainerService(IMapper mapper, ITrainerRepository repository)
+    public TrainerService(IMapper mapper, ITrainerRepository repository,IWebHostEnvironment web)
     {
         _mapper = mapper;
         _repository = repository;
+        _web = web;
     }
 
     public async Task<CreateTrainerDto> CreateTrainerAsync(CreateTrainerDto dto)
@@ -54,6 +58,7 @@ public class TrainerService : ITrainerService
             .FirstOrDefaultAsync(x => x.Id == dto.Id);
 
         if (trainer == null) throw new NotFoundException("Məşqçi tapılmadı", 404);
+        FileExtention.Delete(_web.WebRootPath, trainer.ImageUrl);
 
         _mapper.Map(dto, trainer);
 
@@ -74,6 +79,7 @@ public class TrainerService : ITrainerService
     {
         var trainer = await GetTrainerByIdAsync(Id);
         var oldTrainer=_mapper.Map<Trainer>(trainer);
+        FileExtention.Delete(_web.WebRootPath, trainer.ImageUrl);
         _repository.Delete(oldTrainer);
         await _repository.SaveChangesAsync();
     }

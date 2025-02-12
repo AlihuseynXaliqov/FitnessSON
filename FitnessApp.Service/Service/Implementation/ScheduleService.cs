@@ -29,13 +29,15 @@ public class ScheduleService : IScheduleService
             x.TrainerId == createScheduleDto.TrainerId &&
             x.DayOfWeek == createScheduleDto.DayOfWeek &&
             ((
-                (createScheduleDto.StartTime >= x.StartTime &&
-                 createScheduleDto.StartTime < x.EndTime) || // Yeni dərsin başlanğıcı mövcud dərsin vaxtına düşür
-                (createScheduleDto.EndTime > x.StartTime &&
-                 createScheduleDto.EndTime <= x.EndTime) || // Yeni dərsin bitmə vaxtı mövcud dərsin vaxtına düşür
-                (createScheduleDto.StartTime <= x.StartTime &&
-                 createScheduleDto.EndTime >= x.EndTime) // Yeni dərs mövcud dərsi tam əhatə edir
-            )));
+                    (createScheduleDto.StartTime >= x.StartTime &&
+                     createScheduleDto.StartTime < x.EndTime) || // Yeni dərsin başlanğıcı mövcud dərsin vaxtına düşür
+                    (createScheduleDto.EndTime > x.StartTime &&
+                     createScheduleDto.EndTime <= x.EndTime) || // Yeni dərsin bitmə vaxtı mövcud dərsin vaxtına düşür
+                    (createScheduleDto.StartTime <= x.StartTime &&
+                     createScheduleDto.EndTime >= x.EndTime) // Yeni dərs mövcud dərsi tam əhatə edir
+                    && (createScheduleDto.StartTime >= x.StartTime && 
+                        createScheduleDto.EndTime <= x.EndTime))
+            ));
         if (toqqusma)
         {
             return false;
@@ -70,10 +72,10 @@ public class ScheduleService : IScheduleService
         var schedule = _repository.GetAll("Class", "Trainer")
             .FirstOrDefault(x => x.Id == updateScheduleDto.Id);
 
-        if(schedule == null) throw new NotFoundException("Cədvəl tapılmadı!", 404);
-        
+        if (schedule == null) throw new NotFoundException("Cədvəl tapılmadı!", 404);
+
         bool toqqusma = await _dbContext.Schedules.AnyAsync(x =>
-            x.IsDeleted&&
+            x.IsDeleted &&
             x.TrainerId == updateScheduleDto.TrainerId &&
             x.DayOfWeek == updateScheduleDto.DayOfWeek &&
             ((

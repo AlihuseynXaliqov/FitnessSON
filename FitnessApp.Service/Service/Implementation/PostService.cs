@@ -51,6 +51,7 @@ public class PostService:IPostService
         if(updatePostDto.Id<=0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
         var post =await _repository.GetAll("User").FirstOrDefaultAsync(x=>x.Id == updatePostDto.Id);
         if(post==null) throw new NotFoundException("Post tapilmadi",404);
+        FileExtention.Delete(_web.WebRootPath, post.ImageUrl);
         _mapper.Map( updatePostDto,post);
         _repository.Update(post);
         await _repository.SaveChangesAsync();

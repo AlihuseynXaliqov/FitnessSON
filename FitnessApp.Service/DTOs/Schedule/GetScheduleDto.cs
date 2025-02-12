@@ -2,9 +2,11 @@
 
 public class GetScheduleDto
 {
-    public int Id { get; set; } 
-    public int ClassId { get; set; }
-    public int TrainerId { get; set; }
+    public int Id { get; set; }
+    public string ClassName { get; set; }
+    public string TrainerFirstName { get; set; }
+    public string TrainerLastName { get; set; }
+
     public DayOfWeek DayOfWeek { get; set; }
     public TimeSpan StartTime { get; set; }
 
