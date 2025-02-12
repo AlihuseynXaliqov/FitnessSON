@@ -24,9 +24,9 @@ public class FileUploadService : IFIleUploadService
         };
     }
     
-    public Task<bool> DeleteFileAsync(string folderName, string fileName)
+    public Task<bool> DeleteFileAsync(string fileOrFolderName)
     {
-        return Task.FromResult(FileExtention.Delete(_web.WebRootPath, folderName, fileName));
+        return Task.FromResult(FileExtention.Delete(_web.WebRootPath,fileOrFolderName ));
     }
 
 }

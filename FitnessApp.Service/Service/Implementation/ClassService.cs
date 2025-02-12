@@ -102,7 +102,7 @@ public class ClassService : IClassService
     {
         var classes = await GetClass(id);
 
-        _repository.Delete(_mapper.Map<Classes>(classes));
+        _repository.SoftDelete(_mapper.Map<Classes>(classes));
         await _repository.SaveChangesAsync();
     }
 }

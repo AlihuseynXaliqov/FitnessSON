@@ -5,5 +5,5 @@ namespace FitnessApp.Service.Service.Interface;
 public interface IFIleUploadService
 {
     Task<GetFileUploadDto> UploadFile(CreateUploadFileDto dto);
-    Task<bool> DeleteFileAsync(string folderName, string fileName);
+    Task<bool> DeleteFileAsync(string fileOrFolderName);
 }

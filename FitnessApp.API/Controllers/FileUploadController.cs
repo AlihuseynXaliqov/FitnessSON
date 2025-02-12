@@ -29,9 +29,9 @@ public class FileUploadController:ControllerBase
     }
     
     [HttpPost("delete")]
-    public async Task<IActionResult> DeleteFile([FromQuery] string folderName, [FromQuery] string fileName)
+    public async Task<IActionResult> DeleteFile([FromQuery] string folderOrFileName)
     {
-        await _service.DeleteFileAsync(folderName, fileName);
+        await _service.DeleteFileAsync(folderOrFileName);
         return Ok(new { Message = "File ugurla silindi"});
     }
 

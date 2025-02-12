@@ -23,13 +23,13 @@ public static class FileExtention
         return Path.Combine(folderName, fileName).Replace("\\", "/");
 
     }
-    public static bool Delete(string rootPath, string folderName,string fileName)
+    public static bool Delete(string rootPath, string FolderAndFileName)
     {
-        var fullPath = Path.Combine(rootPath, folderName, fileName);
+        var fullPath = Path.Combine(rootPath, FolderAndFileName);
 
-        if (!System.IO.File.Exists(fullPath)) return false;
+        if (!File.Exists(fullPath)) return false;
 
-        System.IO.File.Delete(fullPath);
+        File.Delete(fullPath);
         return true;
     }
 

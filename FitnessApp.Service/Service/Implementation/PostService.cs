@@ -3,7 +3,9 @@ using FitnessApp.Core;
 using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Post;
 using FitnessApp.Service.Helper.Exception.Base;
+using FitnessApp.Service.Helper.UploadFile;
 using FitnessApp.Service.Service.Interface;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitnessApp.Service.Service.Implementation;
@@ -12,11 +14,14 @@ public class PostService:IPostService
 {
     private readonly IPostRepository _repository;
     private readonly IMapper _mapper;
+    private readonly IWebHostEnvironment _web;
 
-    public PostService(IPostRepository repository,IMapper mapper)
+
+    public PostService(IPostRepository repository,IMapper mapper,IWebHostEnvironment web)
     {
         _repository = repository;
         _mapper = mapper;
+        _web = web;
     }
     
     public async Task<CreatePostDto> CreateAsync(CreatePostDto createPostDto)
@@ -56,6 +61,7 @@ public class PostService:IPostService
     {
         if(id<=0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
         var post =await _repository.GetAll("User").FirstOrDefaultAsync(x=>x.Id == id);
+        FileExtention.Delete(_web.WebRootPath, post.ImageUrl);
         if(post==null) throw new NotFoundException("Post tapilmadi",404);
         _repository.Delete(post);
         await _repository.SaveChangesAsync();

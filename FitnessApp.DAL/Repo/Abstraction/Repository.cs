@@ -26,10 +26,15 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:BaseEntity,n
          Table.Update(entity);
     }
 
-    public void Delete(TEntity entity)
+    public void SoftDelete(TEntity entity)
     {
         entity.IsDeleted = true;
         Table.Update(entity);
+    }
+
+    public void Delete(TEntity entity)
+    {
+        Table.Remove(entity);
     }
 
 
