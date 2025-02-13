@@ -46,7 +46,7 @@ public class AuthService : IAuthService
 
         var appUser = _mapper.Map<AppUser>(registerDto);
         var result = await _userManager.CreateAsync(appUser, registerDto.Password);
-        await _userManager.AddToRoleAsync(appUser, Roles.Admin.ToString());
+        
         if (!result.Succeeded)
         {
             StringBuilder sb = new StringBuilder();
@@ -71,7 +71,7 @@ public class AuthService : IAuthService
             Subject = "Hesabınızı təsdiqləyin",
             Body = $"<h1>Təsdiq kodunuz: <br>{confirmKey}</h1><a href='{link}'>Təsdiqləyin<a/>"
         };
-
+        await _userManager.AddToRoleAsync(appUser, nameof(Roles.Member));
         await _mailService.SendEmailAsync(mailRequest);
     }
 
@@ -100,7 +100,7 @@ public class AuthService : IAuthService
             throw new RegisterException("Tesdiq kodunuz duzgun deyil", 400);
         }
 
-        if ((DateTime.UtcNow - user.ConfirmKeyCreatedAt.Value).TotalMinutes < 2)
+        if ((DateTime.UtcNow - user.ConfirmKeyCreatedAt.Value).TotalMinutes < 5)
         {
         user.EmailConfirmed = true;
         user.ConfirmKey = null;
@@ -139,18 +139,6 @@ public class AuthService : IAuthService
         return "Yeni təsdiq kodu emailinizə göndərildi. ";
     }
     
-
-    public async Task CreateRoleAsync()
-    {
-        foreach (var role in Enum.GetValues(typeof(Roles)))
-        {
-            await _roleManager.CreateAsync(new IdentityRole()
-            {
-                Name = role.ToString()
-            });
-        }
-    }
-
 
     public async Task<string> LoginAsync(LoginDto loginDto)
     {

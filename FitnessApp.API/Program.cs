@@ -112,6 +112,7 @@ app.UseGlobalException();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseSeedData();
 
 /*
 builder.Services.AddCors(options =>

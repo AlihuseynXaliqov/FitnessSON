@@ -23,14 +23,7 @@ public class AuthController : ControllerBase
         await _authService.RegisterAsync(dto);
         return Ok();
     }
-
-    [HttpPost("[Action]")]
-    public async Task<IActionResult> CreateRole()
-    {
-        await _authService.CreateRoleAsync();
-        return Ok();
-    }
-
+    
     [HttpPost("[Action]")]
     public async Task<IActionResult> Login([FromForm] LoginDto dto)
     {
