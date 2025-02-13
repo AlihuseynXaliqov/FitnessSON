@@ -3,31 +3,32 @@ using FitnessApp.Core;
 using FitnessApp.Service.DTOs.Trainer;
 
 namespace FitnessApp.Service.Mapper.Trainer;
+using AutoMapper;
+using FitnessApp.Core;
+using FitnessApp.Service.DTOs.Trainer;
+
 
 public class TrainerProfile : Profile
 {
     public TrainerProfile()
     {
         // Mapping for creating a trainer
-
         CreateMap<CreateTrainerDto, Core.Trainer>()
             .ForMember(dest => dest.TrainersClasses, opt =>
                 opt.MapFrom(src => src.ClassIds.Select(id => new TrainersClasses { ClassId = id })));
 
-        // Add the missing reverse mapping:
-        CreateMap<Core.Trainer, CreateTrainerDto>()
-            .ForMember(dest => dest.ClassIds, opt =>
-                opt.MapFrom(src => src.TrainersClasses.Select(tc => tc.ClassId)));
+        // Reverse mapping for CreateTrainerDto
+        CreateMap<Core.Trainer, CreateTrainerDto>();
 
-        // Other mappings
+        // Mapping for GetTrainerDto
         CreateMap<Core.Trainer, GetTrainerDto>()
-            .ForMember(dest => dest.ClassIds, opt =>
-                opt.MapFrom(src => src.TrainersClasses.Select(tc => tc.ClassId)))
+            .ForMember(dest => dest.ClassNames, opt =>
+                opt.MapFrom(src => src.TrainersClasses.Select(tc => tc.Class != null ? tc.Class.Name : null))) // Yalnız ClassNames əlavə edildi
+            .ForMember(dest => dest.PositionName, opt => 
+                opt.MapFrom(src => src.Position != null ? src.Position.Name : null)) // PositionName əlavə edildi
             .ReverseMap();
 
         CreateMap<Core.Trainer, UpdateTrainerDto>()
-            .ForMember(dest => dest.ClassIds, opt =>
-                opt.MapFrom(src => src.TrainersClasses.Select(tc => tc.ClassId)))
             .ReverseMap();
     }
 }

@@ -61,6 +61,7 @@ public class AuthService : IAuthService
         var token = _userManager.GenerateEmailConfirmationTokenAsync(appUser);
         var confirmKey = new Random().Next(100000, 999999).ToString();
         appUser.ConfirmKey = confirmKey;
+        appUser.ConfirmKeyCreatedAt = DateTime.UtcNow;
         await _context.SaveChangesAsync();
         var link = $"http://localhost:5179/submit-registration?email={registerDto.Email}&token={token}";
 
@@ -82,6 +83,7 @@ public class AuthService : IAuthService
             throw new NotFoundException();
         }
 
+        
         if (user.EmailConfirmed)
         {
             throw new RegisterException("Hesabiniz artiq tesdiqlenib", 409);
@@ -91,17 +93,52 @@ public class AuthService : IAuthService
         {
             throw new RegisterException("Tesdiq kodunuz movcud deyil ve ya artiq istifade edilib", 400);
         }
+        
 
         if (user.ConfirmKey != dto.ConfirmKey)
         {
             throw new RegisterException("Tesdiq kodunuz duzgun deyil", 400);
         }
 
+        if ((DateTime.UtcNow - user.ConfirmKeyCreatedAt.Value).TotalMinutes < 2)
+        {
         user.EmailConfirmed = true;
         user.ConfirmKey = null;
+            
+        }
+        else
+        {
+            throw new RegisterException("Təsdiq kodunun vaxtı bitib,yeniden kod gonderin ", 400);
+        }
         await _context.SaveChangesAsync();
         return "Email uğurla təsdiqləndi!";
     }
+
+    public async Task<string> ResendConfirmationCode(ResendCodeDto dto)
+    {
+        var user = await _userManager.FindByEmailAsync(dto.Email);
+        if(user == null) throw new NotFoundException();
+        if (user.EmailConfirmed)
+        {
+            throw new RegisterException("Hesabiniz artiq tesdiqlenib", 409);
+        }
+        
+        var newConfirmKey = new Random().Next(100000, 999999).ToString();
+        user.ConfirmKey = newConfirmKey;
+        user.ConfirmKeyCreatedAt = DateTime.Now;
+        await _context.SaveChangesAsync();
+        
+        MailRequest mailRequest = new MailRequest()
+        {
+            ToEmail = dto.Email,
+            Subject = "Hesabınızı təsdiqləyin",
+            Body = $"<h1>Təsdiq kodunuz: <br>{newConfirmKey}</h1><a href=''>Təsdiqləyin<a/>"
+        };
+        
+        await _mailService.SendEmailAsync(mailRequest);
+        return "Yeni təsdiq kodu emailinizə göndərildi. ";
+    }
+    
 
     public async Task CreateRoleAsync()
     {

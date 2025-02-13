@@ -12,7 +12,6 @@ public class GetTrainerDto
     public double Weight { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
-
-
-    public List<int> ClassIds { get; set; } = new List<int>();
+    public string PositionName { get; set; }
+    public List<string> ClassNames { get; set; } = new List<string>();
 }

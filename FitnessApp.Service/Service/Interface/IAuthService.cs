@@ -9,6 +9,7 @@ public interface IAuthService
     Task<string> LoginAsync(LoginDto loginDto);
     Task LogoutAsync();
     Task<string> SubmitRegistration(SubmitRegisterDto dto);
+    Task<string> ResendConfirmationCode(ResendCodeDto dto);
     Task<string> ResetPassword(ResetPasswordDto dto);
     Task<string> ForgetPasswordAsync(ForgetPasswordDto dto);
 }
