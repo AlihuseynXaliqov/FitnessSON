@@ -17,21 +17,23 @@ public class ResetPasswordDtoValidator : AbstractValidator<ResetPasswordDto>
             .NotNull()
             .NotEmpty()
             .WithMessage("Gmail boş ola bilməz!")
-            .Matches(@"^[a-zA-Z0-9._%+-]+@gmail\.com$")
-            .WithMessage("Etibarlı gmail deyil!");
+            .EmailAddress().WithMessage("Düzgün email daxil edin");
+
         RuleFor(x => x.Token)
             .NotEmpty()
             .NotNull()
             .WithMessage("Token boş ola bilməz!");
         RuleFor(x => x.Password)
-            .NotNull()
-            .NotEmpty()
-            .WithMessage("Şifrə boş ola bilməz!")
-            .MinimumLength(8)
-            .WithMessage("Şifrə ən azı 8 simvol uzunluğunda olmalıdır!");
-        RuleFor(x => x.ConfirmPassword)
-            .Equal(x => x.Password)
-            .WithMessage("Şifrələr uyğunlaşmır!");
+            .NotEmpty().WithMessage("Şifrə boş ola bilməz")
+            .NotNull().WithMessage("Şifrə boş ola bilməz")
+            .Matches("[A-Z]").WithMessage("Şifrədə ən azı 1 böyük hərf olmalıdır")
+            .Matches("[a-z]").WithMessage("Şifrədə ən azı 1 kiçik hərf olmalıdır")
+            .Matches("[0-9]").WithMessage("Şifrədə ən azı 1 rəqəm olmalıdır")
+            .Matches("[^A-Za-z0-9]").WithMessage("Şifrədə ən azı 1 simvol olmalıdır")
+            .MinimumLength(8).WithMessage("Şifrə ən azı 8 simvoldan ibarət olmalıdır");
+
+        RuleFor(x => x)
+            .Must(x => x.Password == x.ConfirmPassword).WithMessage("Şifrələr uyğun gəlmir");
     }
 
 }

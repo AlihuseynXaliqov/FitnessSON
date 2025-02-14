@@ -22,38 +22,35 @@ public class RegisterValidator : AbstractValidator<RegisterDto>
             .NotNull().WithMessage("Ad boş ola bilməz")
             .NotEmpty().WithMessage("Ad boş ola bilməz")
             .MaximumLength(20).WithMessage("Ad ən çox 20 simvoldan ibarət ola bilər")
-            .MinimumLength(4).WithMessage("Ad ən çox 4 simvoldan ibarət ola bilər");
+            .MinimumLength(3).WithMessage("Ad ən az 3 simvoldan ibarət ola bilər");
         
         RuleFor(x => x.LastName)
             .NotNull().WithMessage("Soyad boş ola bilməz")
             .NotEmpty().WithMessage("Soyad boş ola bilməz")
             .MaximumLength(20).WithMessage("Soyad ən çox 20 simvoldan ibarət ola bilər")
-            .MinimumLength(4).WithMessage("Soyad ən çox 4 simvoldan ibarət ola bilər");     
-        RuleFor(x => x.LastName)
-            .NotNull().WithMessage("İstifadəçi ad boş ola bilməz")
-            .NotEmpty().WithMessage("İstifadəçi ad boş ola bilməz")
-            .MaximumLength(20).WithMessage("İstifadəçi ad ən çox 20 simvoldan ibarət ola bilər")
-            .MinimumLength(4).WithMessage("İstifadəçi ad ən çox 4 simvoldan ibarət ola bilər");   
+            .MinimumLength(3).WithMessage("Soyad ən az 3 simvoldan ibarət ola bilər");  
+        
+        RuleFor(x => x.Username)
+            .NotNull().WithMessage("İstifadəçi adı boş ola bilməz")
+            .NotEmpty().WithMessage("İstifadəçi adı boş ola bilməz")
+            .MaximumLength(20).WithMessage("İstifadəçi adı ən çox 20 simvoldan ibarət ola bilər")
+            .MinimumLength(4).WithMessage("İstifadəçi adı ən az 4 simvoldan ibarət ola bilər");
+
         RuleFor(x => x.Email)
-            .NotEmpty()
-            .NotNull()
-            .Must(x =>
-            {
-                Regex regex = new Regex(@"^[a-zA-Z0-9._%+-]+@gmail\.com$");
-                var match = regex.Match(x);
-                return match.Success;
-            }).WithMessage("Email is not correct");
+            .NotEmpty().WithMessage("Email boş ola bilməz")
+            .NotNull().WithMessage("Email boş ola bilməz")
+            .EmailAddress().WithMessage("Düzgün email daxil edin");
 
         RuleFor(x => x.Password)
-            .NotEmpty().WithMessage("Password cannot be empty")
-            .NotNull().WithMessage("Password cannot be null")
-            .Matches("[A-Z]").WithMessage("Parolda en az 1 boyuk herf olmalidi")
-            .Matches("[a-z]").WithMessage("Parolda en az 1 kicik herf olmalidi")
-            .Matches("[0-9]").WithMessage("Parolda en az 1 reqem olmalidi")
-            .Matches("^[A-Za-z0-9]").WithMessage("Parolda en az 1 simvol olmalidi")
-            .MinimumLength(8).WithMessage("Password must be at least 8 characters");
-        
+            .NotEmpty().WithMessage("Şifrə boş ola bilməz")
+            .NotNull().WithMessage("Şifrə boş ola bilməz")
+            .Matches("[A-Z]").WithMessage("Şifrədə ən azı 1 böyük hərf olmalıdır")
+            .Matches("[a-z]").WithMessage("Şifrədə ən azı 1 kiçik hərf olmalıdır")
+            .Matches("[0-9]").WithMessage("Şifrədə ən azı 1 rəqəm olmalıdır")
+            .Matches("[^A-Za-z0-9]").WithMessage("Şifrədə ən azı 1 simvol olmalıdır")
+            .MinimumLength(8).WithMessage("Şifrə ən azı 8 simvoldan ibarət olmalıdır");
+
         RuleFor(x => x)
-            .Must(x => x.Password == x.ConfirmPassword).WithMessage("Passwords do not match");
+            .Must(x => x.Password == x.ConfirmPassword).WithMessage("Şifrələr uyğun gəlmir");
     }
-    }
+}

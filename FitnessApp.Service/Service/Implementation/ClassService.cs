@@ -106,7 +106,8 @@ public class ClassService : IClassService
 
     public async Task DeleteClass(int id)
     {
-        var classes = await GetClass(id);
+        var classes = await _repository.GetAll("Schedules","Schedules.Trainer").FirstOrDefaultAsync(x=>x.Id == id);
+
         FileExtention.Delete(_web.WebRootPath, classes.ImageUrl);
 
         _repository.SoftDelete(_mapper.Map<Classes>(classes));

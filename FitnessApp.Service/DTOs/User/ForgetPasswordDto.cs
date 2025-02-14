@@ -15,7 +15,6 @@ public class ForgetPasswordValidator : AbstractValidator<ForgetPasswordDto>
             .NotNull()
             .NotEmpty()
             .WithMessage("Gmail boş ola bilməz!")
-            .Matches(@"^[a-zA-Z0-9._%+-]+@gmail\.com$")
-            .WithMessage("Etibarlı gmail deyil!");
+            .EmailAddress().WithMessage("Düzgün email daxil edin");
     }
 }
