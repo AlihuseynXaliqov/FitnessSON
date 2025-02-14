@@ -1,0 +1,22 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Agent\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>FitnessApp.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FitnessApp.API</BasePath>
+      <RelativePath>Agent/dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>wzh9qdm7om</Fingerprint>
+      <Integrity>pG5VnFkm313QEs/HTDxzv70++/Vhpqi4GRt9OXS10Sw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Agent\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+  </ItemGroup>
+</Project>

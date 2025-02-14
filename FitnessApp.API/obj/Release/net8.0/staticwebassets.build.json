@@ -1,12 +1,125 @@
 {
   "Version": 1,
-  "Hash": "5ljM4vC1MT2ncREiX5UMecXPtTRBOW0DV4rYXsjWZZE=",
+  "Hash": "AQbnqVKYuXv140Kz4TSD9p3vHHar2chhrpmyxrvAfsc=",
   "Source": "FitnessApp.API",
   "BasePath": "_content/FitnessApp.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "FitnessApp.API\\wwwroot",
+      "Source": "FitnessApp.API",
+      "ContentRoot": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\",
+      "BasePath": "_content/FitnessApp.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Agent\\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg",
+      "SourceId": "FitnessApp.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\",
+      "BasePath": "_content/FitnessApp.API",
+      "RelativePath": "Agent/dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4)#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wzh9qdm7om",
+      "Integrity": "pG5VnFkm313QEs/HTDxzv70++/Vhpqi4GRt9OXS10Sw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Agent\\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "Agent/dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg",
+      "AssetFile": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Agent\\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11576"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pG5VnFkm313QEs/HTDxzv70++/Vhpqi4GRt9OXS10Sw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 19:36:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pG5VnFkm313QEs/HTDxzv70++/Vhpqi4GRt9OXS10Sw="
+        }
+      ]
+    },
+    {
+      "Route": "Agent/dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).wzh9qdm7om.jpeg",
+      "AssetFile": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Agent\\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11576"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pG5VnFkm313QEs/HTDxzv70++/Vhpqi4GRt9OXS10Sw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 19:36:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wzh9qdm7om"
+        },
+        {
+          "Name": "label",
+          "Value": "Agent/dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pG5VnFkm313QEs/HTDxzv70++/Vhpqi4GRt9OXS10Sw="
+        }
+      ]
+    }
+  ]
 }

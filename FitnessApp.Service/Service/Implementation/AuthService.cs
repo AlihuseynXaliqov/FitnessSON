@@ -180,7 +180,7 @@ public class AuthService : IAuthService
             audience: _config["JWT:Audience"],
             claims: _claims, // 🔥 Claim-lərə rollar da daxil oldu!
             signingCredentials: signingCredentials,
-            expires: DateTime.UtcNow.AddMinutes(60)
+            expires: DateTime.UtcNow.AddDays(1)
         );
 
 // 🛠 Tokeni string olaraq qaytarın

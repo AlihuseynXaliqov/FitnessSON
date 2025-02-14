@@ -1,0 +1,16 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/FitnessApp.API/Agent/dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Agent\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pG5VnFkm313QEs/HTDxzv70\u002B\u002B/Vhpqi4GRt9OXS10Sw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"11576"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022pG5VnFkm313QEs/HTDxzv70\u002B\u002B/Vhpqi4GRt9OXS10Sw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 09 Feb 2025 19:36:26 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/FitnessApp.API/Agent/dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).wzh9qdm7om.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Agent\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wzh9qdm7om"},{"Name":"integrity","Value":"sha256-pG5VnFkm313QEs/HTDxzv70\u002B\u002B/Vhpqi4GRt9OXS10Sw="},{"Name":"label","Value":"_content/FitnessApp.API/Agent/dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"11576"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022pG5VnFkm313QEs/HTDxzv70\u002B\u002B/Vhpqi4GRt9OXS10Sw=\u0022"},{"Name":"Last-Modified","Value":"Sun, 09 Feb 2025 19:36:26 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

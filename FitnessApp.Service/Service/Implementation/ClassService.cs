@@ -58,7 +58,7 @@ public class ClassService : IClassService
     public async Task<GetClassDto> GetClass(int id)
     {
         if (id <= 0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
-        var classes = await _repository.GetByIdAsync(id);
+        var classes = await _repository.GetAll("Schedules","Schedules.Trainer").FirstOrDefaultAsync(x=>x.Id == id);
         if (classes == null) throw new NotFoundException("Bele idman novu movcud deyil", 404);
         var classDto = _mapper.Map<GetClassDto>(classes);
         return classDto;
@@ -66,7 +66,7 @@ public class ClassService : IClassService
 
     public ICollection<GetClassDto> GetAllClasses()
     {
-        var classes = _repository.GetAll();
+        var classes = _repository.GetAll("Schedules","Schedules.Trainer");
         return _mapper.Map<ICollection<GetClassDto>>(classes);
     }
 
@@ -97,8 +97,8 @@ public class ClassService : IClassService
         else
         {
             FileExtention.Delete(_web.WebRootPath,oldClass.ImageUrl);
-            var newClass = _mapper.Map<GetClassDto>(updateClassDto);
-            _repository.Update(_mapper.Map<Classes>(newClass));
+            var newClass = _mapper.Map<Classes>(updateClassDto);
+            _repository.Update(newClass);
         }
 
         await _repository.SaveChangesAsync();
