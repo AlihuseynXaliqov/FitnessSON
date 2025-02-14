@@ -7,7 +7,7 @@ public class CreateFeedBackDto
     public string ImageUrl { get; set; }
     public string Description { get; set; }
     public int Rating { get; set; }
-    public string UserId { get; set; }
+    
 }
 
 public class CreateFeedBackDtoValidator : AbstractValidator<CreateFeedBackDto>
@@ -24,8 +24,6 @@ public class CreateFeedBackDtoValidator : AbstractValidator<CreateFeedBackDto>
         RuleFor(x => x.Rating)
             .InclusiveBetween(1, 5).WithMessage("Qiymət 1 ilə 5 arasında olmalıdır.");
 
-        RuleFor(x => x.UserId)
-            .NotEmpty().WithMessage("İstifadəçi ID-si boş ola bilməz.");
     }
 
 }

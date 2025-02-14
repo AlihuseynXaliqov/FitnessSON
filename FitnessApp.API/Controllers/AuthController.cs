@@ -43,6 +43,8 @@ public class AuthController : ControllerBase
         return Ok(await _authService.SubmitRegistration(dto));
     }
 
+    
+
     [HttpPost("[Action]")]
     public async Task<IActionResult> ResendNewCode([FromForm] ResendCodeDto dto)
     {

@@ -10,6 +10,7 @@ using FitnessApp.Service.Helper.Exception.Auth;
 using FitnessApp.Service.Service.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -46,7 +47,7 @@ public class AuthService : IAuthService
 
         var appUser = _mapper.Map<AppUser>(registerDto);
         var result = await _userManager.CreateAsync(appUser, registerDto.Password);
-        
+
         if (!result.Succeeded)
         {
             StringBuilder sb = new StringBuilder();
@@ -75,6 +76,25 @@ public class AuthService : IAuthService
         await _mailService.SendEmailAsync(mailRequest);
     }
 
+    
+    
+    public async Task DeleteUnconfirmedUsers()
+    {
+        var expirationTime = DateTime.UtcNow.AddHours(-24);
+        var unconfirmedUsers = await _context.Users
+            .Where(u => !u.EmailConfirmed && u.ConfirmKeyCreatedAt < expirationTime)
+            .ToListAsync();
+
+        if (unconfirmedUsers.Any())
+        {
+            _context.Users.RemoveRange(unconfirmedUsers);
+            await _context.SaveChangesAsync();
+        }
+    }
+
+
+    
+    
     public async Task<string> SubmitRegistration(SubmitRegisterDto dto)
     {
         var user = await _userManager.FindByEmailAsync(dto.Email);
@@ -83,7 +103,7 @@ public class AuthService : IAuthService
             throw new NotFoundException();
         }
 
-        
+
         if (user.EmailConfirmed)
         {
             throw new RegisterException("Hesabiniz artiq tesdiqlenib", 409);
@@ -93,7 +113,7 @@ public class AuthService : IAuthService
         {
             throw new RegisterException("Tesdiq kodunuz movcud deyil ve ya artiq istifade edilib", 400);
         }
-        
+
 
         if (user.ConfirmKey != dto.ConfirmKey)
         {
@@ -102,14 +122,15 @@ public class AuthService : IAuthService
 
         if ((DateTime.UtcNow - user.ConfirmKeyCreatedAt.Value).TotalMinutes < 5)
         {
-        user.EmailConfirmed = true;
-        user.ConfirmKey = null;
-            
+            user.EmailConfirmed = true;
+            user.ConfirmKey = null;
         }
         else
         {
             throw new RegisterException("Təsdiq kodunun vaxtı bitib,yeniden kod gonderin ", 400);
         }
+
+        await DeleteUnconfirmedUsers();
         await _context.SaveChangesAsync();
         return "Email uğurla təsdiqləndi!";
     }
@@ -117,28 +138,28 @@ public class AuthService : IAuthService
     public async Task<string> ResendConfirmationCode(ResendCodeDto dto)
     {
         var user = await _userManager.FindByEmailAsync(dto.Email);
-        if(user == null) throw new NotFoundException();
+        if (user == null) throw new NotFoundException();
         if (user.EmailConfirmed)
         {
             throw new RegisterException("Hesabiniz artiq tesdiqlenib", 409);
         }
-        
+
         var newConfirmKey = new Random().Next(100000, 999999).ToString();
         user.ConfirmKey = newConfirmKey;
         user.ConfirmKeyCreatedAt = DateTime.Now;
         await _context.SaveChangesAsync();
-        
+
         MailRequest mailRequest = new MailRequest()
         {
             ToEmail = dto.Email,
             Subject = "Hesabınızı təsdiqləyin",
             Body = $"<h1>Təsdiq kodunuz: <br>{newConfirmKey}</h1><a href=''>Təsdiqləyin<a/>"
         };
-        
+
         await _mailService.SendEmailAsync(mailRequest);
         return "Yeni təsdiq kodu emailinizə göndərildi. ";
     }
-    
+
 
     public async Task<string> LoginAsync(LoginDto loginDto)
     {
@@ -154,27 +175,22 @@ public class AuthService : IAuthService
         var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
         if (!result) throw new LoginException("Məlumatlar səhvdir", 400);
 
-// 🛠 İstifadəçinin rollarını əldə edin
         var roles = await _userManager.GetRolesAsync(user);
 
-// 🛠 Claim-lərə rolları əlavə edin
         var _claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.Name, user.UserName)
         };
 
-// 🛠 Rolları tokenə əlavə edin
         foreach (var role in roles)
         {
-            _claims.Add(new Claim(ClaimTypes.Role, role)); // ← Burada rol əlavə edirik
+            _claims.Add(new Claim(ClaimTypes.Role, role));
         }
 
-// 🛠 JWT yaratmaq üçün Security Key və Signing Credentials
         SecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SecurityKey"]));
         SigningCredentials signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-// 🛠 Token yaradılması
         JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
             issuer: _config["JWT:Issuer"],
             audience: _config["JWT:Audience"],
@@ -183,7 +199,6 @@ public class AuthService : IAuthService
             expires: DateTime.UtcNow.AddDays(1)
         );
 
-// 🛠 Tokeni string olaraq qaytarın
         return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
     }
 

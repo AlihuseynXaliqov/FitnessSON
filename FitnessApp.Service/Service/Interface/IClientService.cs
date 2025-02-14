@@ -9,4 +9,6 @@ public interface IClientService
     Task UpdateAsync(UpdateFeedBackDto dto);
     Task<GetFeedBackDto> GetByIdAsync(int id);
     Task DeleteAsync(int id);
+    Task ConfirmFeedBack(int id);
+    ICollection<GetFeedBackDto> GetAllUnconfirmedFeedBack();
 }

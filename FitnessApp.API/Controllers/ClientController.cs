@@ -8,7 +8,7 @@ namespace FitnessApp.API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class ClientController:ControllerBase
+public class ClientController : ControllerBase
 {
     private readonly IClientService _service;
 
@@ -16,8 +16,9 @@ public class ClientController:ControllerBase
     {
         _service = service;
     }
+
     [HttpGet]
-    public  IActionResult GetAll()
+    public IActionResult GetAll()
     {
         return Ok(_service.GetAllAsync());
     }
@@ -31,7 +32,7 @@ public class ClientController:ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> Create(CreateFeedBackDto dto)
     {
-        return StatusCode(201,await _service.CreateAsync(dto));
+        return StatusCode(201, await _service.CreateAsync(dto));
     }
 
 
@@ -48,5 +49,18 @@ public class ClientController:ControllerBase
         await _service.DeleteAsync(id);
         return Ok();
     }
-    
+
+    [HttpGet("confirmedFeedbacks")]
+    public IActionResult GetUnconfirmedFeedbacks()
+    {
+        return Ok(_service.GetAllUnconfirmedFeedBack());
+    }
+
+    [HttpPut("unconfirmedFeedbacks/{id}")]
+    public async Task<IActionResult> UpdateUnconfirmedFeedbacks(int id)
+    {
+       await _service.ConfirmFeedBack(id);
+       return Ok();
+    }
+
 }

@@ -26,6 +26,7 @@ public static class RegisterProgramService
         services.AddTransient<IMailService, MailService>();
         services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RegisterValidator>());
         services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+        services.AddHttpContextAccessor();
 
     }
 }
