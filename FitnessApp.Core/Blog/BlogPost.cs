@@ -1,6 +1,7 @@
 ﻿using FitnessApp.Core.Base;
+using FitnessApp.Core.User;
 
-namespace FitnessApp.Core;
+namespace FitnessApp.Core.Blog;
 
 public class BlogPost:BaseEntity
 {

@@ -1,11 +1,14 @@
 ﻿using FitnessApp.Service.DTOs.Position;
 using FitnessApp.Service.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(Roles = "Admin")]
+
 public class PositionController: ControllerBase
 {
     private readonly IPositionService _service;

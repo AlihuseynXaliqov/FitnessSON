@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessApp.Core;
+using FitnessApp.Core.Class;
 using FitnessApp.DAL;
 using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Schedule;

@@ -1,6 +1,6 @@
 ﻿using FitnessApp.Core.Base;
 
-namespace FitnessApp.Core;
+namespace FitnessApp.Core.Class;
 
 public class Schedule:BaseEntity
 {
@@ -9,7 +9,7 @@ public class Schedule:BaseEntity
     public Classes Class { get; set; }
     
     public int TrainerId { get; set; }
-    public Trainer Trainer { get; set; }
+    public Trainer.Trainer Trainer { get; set; }
     
     public DayOfWeek DayOfWeek { get; set; }
     public TimeSpan StartTime { get; set; }

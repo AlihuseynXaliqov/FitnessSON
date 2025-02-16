@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessApp.Core;
+using FitnessApp.Core.Blog;
 using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Post;
 using FitnessApp.Service.Helper.Exception.Base;

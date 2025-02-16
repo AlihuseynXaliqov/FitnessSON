@@ -1,5 +1,6 @@
 ﻿using FitnessApp.Service.DTOs.Post;
 using FitnessApp.Service.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,8 @@ namespace FitnessApp.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(Roles = "Admin")]
+
 public class PostController : ControllerBase
 {
     private readonly IPostService _service;

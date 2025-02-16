@@ -18,14 +18,14 @@ public class AuthController : ControllerBase
 
 
     [HttpPost("[Action]")]
-    public async Task<IActionResult> Register([FromForm] RegisterDto dto)
+    public async Task<IActionResult> Register(RegisterDto dto)
     {
-        await _authService.RegisterAsync(dto);
-        return Ok();
+        var message = await _authService.RegisterAsync(dto);
+        return Ok(new { success = true, message });
     }
-    
+
     [HttpPost("[Action]")]
-    public async Task<IActionResult> Login([FromForm] LoginDto dto)
+    public async Task<IActionResult> Login(LoginDto dto)
     {
         return Ok(await _authService.LoginAsync(dto));
     }
@@ -38,27 +38,26 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("[Action]")]
-    public async Task<IActionResult> SubmitRegister([FromForm] SubmitRegisterDto dto)
+    public async Task<IActionResult> SubmitRegister(SubmitRegisterDto dto)
     {
         return Ok(await _authService.SubmitRegistration(dto));
     }
 
-    
 
     [HttpPost("[Action]")]
-    public async Task<IActionResult> ResendNewCode([FromForm] ResendCodeDto dto)
+    public async Task<IActionResult> ResendNewCode(ResendCodeDto dto)
     {
         return Ok(await _authService.ResendConfirmationCode(dto));
     }
- 
+
     [HttpPost("[Action]")]
-    public async Task<IActionResult> ForgetPassword([FromForm] ForgetPasswordDto dto)
+    public async Task<IActionResult> ForgetPassword(ForgetPasswordDto dto)
     {
         return Ok(await _authService.ForgetPasswordAsync(dto));
     }
 
     [HttpPost("[Action]")]
-    public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordDto dto)
+    public async Task<IActionResult> ResetPassword(ResetPasswordDto dto)
     {
         return Ok(await _authService.ResetPassword(dto));
     }

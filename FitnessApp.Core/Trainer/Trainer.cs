@@ -1,6 +1,7 @@
 ﻿using FitnessApp.Core.Base;
+using FitnessApp.Core.Class;
 
-namespace FitnessApp.Core;
+namespace FitnessApp.Core.Trainer;
 
 public class Trainer:BaseEntity
 {

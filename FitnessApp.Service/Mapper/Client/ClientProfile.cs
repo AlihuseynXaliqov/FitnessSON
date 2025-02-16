@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessApp.Core;
+using FitnessApp.Core.FeedBack;
 using FitnessApp.Service.DTOs.Client;
 
 namespace FitnessApp.Service.Mapper.Client;

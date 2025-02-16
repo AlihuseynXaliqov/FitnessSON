@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessApp.Core;
+using FitnessApp.Core.Trainer;
 using FitnessApp.Service.DTOs.Position;
 
 namespace FitnessApp.Service.Mapper.Position;

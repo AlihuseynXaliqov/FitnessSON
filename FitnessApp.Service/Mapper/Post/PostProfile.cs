@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessApp.Core;
+using FitnessApp.Core.Blog;
 using FitnessApp.Service.DTOs.Post;
 
 namespace FitnessApp.Service.Mapper.Post;

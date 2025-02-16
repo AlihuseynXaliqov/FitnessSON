@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Text;
 using FitnessApp.Core;
+using FitnessApp.Core.User;
 using FitnessApp.DAL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

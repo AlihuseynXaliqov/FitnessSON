@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessApp.Core;
+using FitnessApp.Core.Class;
 using FitnessApp.Service.DTOs.Trainer;
 
 namespace FitnessApp.Service.Mapper.Trainer;
@@ -13,22 +14,22 @@ public class TrainerProfile : Profile
     public TrainerProfile()
     {
         // Mapping for creating a trainer
-        CreateMap<CreateTrainerDto, Core.Trainer>()
+        CreateMap<CreateTrainerDto, Core.Trainer.Trainer>()
             .ForMember(dest => dest.TrainersClasses, opt =>
                 opt.MapFrom(src => src.ClassIds.Select(id => new TrainersClasses { ClassId = id })));
 
         // Reverse mapping for CreateTrainerDto
-        CreateMap<Core.Trainer, CreateTrainerDto>();
+        CreateMap<Core.Trainer.Trainer, CreateTrainerDto>();
 
         // Mapping for GetTrainerDto
-        CreateMap<Core.Trainer, GetTrainerDto>()
+        CreateMap<Core.Trainer.Trainer, GetTrainerDto>()
             .ForMember(dest => dest.ClassNames, opt =>
                 opt.MapFrom(src => src.TrainersClasses.Select(tc => tc.Class != null ? tc.Class.Name : null))) // Yalnız ClassNames əlavə edildi
             .ForMember(dest => dest.PositionName, opt => 
                 opt.MapFrom(src => src.Position != null ? src.Position.Name : null)) // PositionName əlavə edildi
             .ReverseMap();
 
-        CreateMap<Core.Trainer, UpdateTrainerDto>()
+        CreateMap<Core.Trainer.Trainer, UpdateTrainerDto>()
             .ReverseMap();
     }
 }

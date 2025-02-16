@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FitnessApp.Core.Blog;
+using FitnessApp.Core.FeedBack;
+using Microsoft.AspNetCore.Identity;
 
-namespace FitnessApp.Core;
+namespace FitnessApp.Core.User;
 
 public class AppUser:IdentityUser
 {

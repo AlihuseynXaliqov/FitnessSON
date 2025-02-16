@@ -1,4 +1,5 @@
 ﻿using System.Net.Mime;
+using System.Text.Json;
 using FitnessApp.Service.Helper.Exception.Base;
 using Microsoft.AspNetCore.Diagnostics;
 
@@ -12,33 +13,33 @@ public static class GlobalException
         {
             exceptionHandlerApp.Run(async context =>
             {
-                // Default to 500 Internal Server Error
-                int statusCode = StatusCodes.Status500InternalServerError;
-                string errorMessage = "An exception was thrown.";
-
+                context.Response.ContentType = "application/json";
                 var feature = context.Features.Get<IExceptionHandlerPathFeature>();
 
                 if (feature?.Error is BaseException ex)
                 {
-                    statusCode = ex.StatusCode != 0 ? ex.StatusCode : StatusCodes.Status500InternalServerError;
-                    errorMessage = ex.ErrorMessage; // Use custom exception message if available
+                    context.Response.StatusCode = ex.StatusCode;
+
+                    var response = new
+                    {
+                        Message = ex.ErrorMessage, ex.StatusCode
+                    };
+
+                    await context.Response.WriteAsync(JsonSerializer.Serialize(response));
                 }
-                else if (feature?.Error is FileNotFoundException)
+                else
                 {
-                    errorMessage += " The file was not found.";
+                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+                    var response = new
+                    {
+                        success = false,
+                        Message = "An unexpected error occurred",
+                        StatusCode = StatusCodes.Status500InternalServerError
+                    };
+
+                    await context.Response.WriteAsync(JsonSerializer.Serialize(response));
                 }
-
-                if (feature?.Path == "/")
-                {
-                    errorMessage += " Page: Home.";
-                }
-
-                // Set response details
-                context.Response.StatusCode = statusCode;
-                context.Response.ContentType = MediaTypeNames.Text.Plain;
-
-                // Write the response
-                await context.Response.WriteAsync(errorMessage);
             });
         });
     }

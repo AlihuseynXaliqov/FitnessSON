@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using AutoMapper;
 using FitnessApp.Core;
+using FitnessApp.Core.User;
 using FitnessApp.DAL;
 using FitnessApp.Service.DTOs.User;
 using FitnessApp.Service.Helper.Email;
@@ -38,7 +39,7 @@ public class AuthService : IAuthService
         _mailService = mailService;
     }
 
-    public async Task RegisterAsync(RegisterDto registerDto)
+    public async Task<string> RegisterAsync(RegisterDto registerDto)
     {
         if (await _userManager.FindByEmailAsync(registerDto.Email) != null)
         {
@@ -56,15 +57,15 @@ public class AuthService : IAuthService
                 sb.Append(item.Description + " ");
             }
 
-            throw new Exception(sb.ToString());
+            throw new RegisterException(sb.ToString(),400);
         }
 
-        var token = _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+        var token =await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
         var confirmKey = new Random().Next(100000, 999999).ToString();
         appUser.ConfirmKey = confirmKey;
         appUser.ConfirmKeyCreatedAt = DateTime.UtcNow;
         await _context.SaveChangesAsync();
-        var link = $"http://localhost:5179/submit-registration?email={registerDto.Email}&token={token}";
+        var link = $"http://localhost:5179/auth/submit-registration?email={registerDto.Email}&token={token}";
 
         MailRequest mailRequest = new MailRequest()
         {
@@ -74,6 +75,7 @@ public class AuthService : IAuthService
         };
         await _userManager.AddToRoleAsync(appUser, nameof(Roles.Member));
         await _mailService.SendEmailAsync(mailRequest);
+        return "Qeydiyyat uğurlu oldu. Zəhmət olmasa emailinizi təsdiqləyin.";
     }
 
     
@@ -211,7 +213,7 @@ public class AuthService : IAuthService
         }
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-        var link = $"http://localhost:5179/reset-password?email={dto.Email}&token={token}";
+        var link = $"http://localhost:5179/auth/reset-password?email={dto.Email}&token={token}";
         MailRequest mailRequest = new MailRequest()
         {
             ToEmail = dto.Email,

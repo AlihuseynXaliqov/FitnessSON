@@ -1,4 +1,5 @@
 ﻿using FitnessApp.Core;
+using FitnessApp.Core.Trainer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

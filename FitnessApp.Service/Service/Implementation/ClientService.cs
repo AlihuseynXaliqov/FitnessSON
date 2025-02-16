@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using AutoMapper;
-using FitnessApp.Core;
+using FitnessApp.Core.FeedBack;
+using FitnessApp.Core.User;
 using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Client;
 using FitnessApp.Service.Helper.Exception.Base;

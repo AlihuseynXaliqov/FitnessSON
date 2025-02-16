@@ -1,10 +1,11 @@
-﻿using FitnessApp.Service.DTOs.User;
+﻿using FitnessApp.Core.User;
+using FitnessApp.Service.DTOs.User;
 
 namespace FitnessApp.Service.Service.Interface;
 
 public interface IAuthService
 {
-    Task RegisterAsync(RegisterDto registerDto);
+    Task<string> RegisterAsync(RegisterDto registerDto);
     Task<string> LoginAsync(LoginDto loginDto);
     Task LogoutAsync();
     Task<string> SubmitRegistration(SubmitRegisterDto dto);
