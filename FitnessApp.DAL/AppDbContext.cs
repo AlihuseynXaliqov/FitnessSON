@@ -4,7 +4,7 @@ using FitnessApp.Core.Blog;
 using FitnessApp.Core.Class;
 using FitnessApp.Core.FeedBack;
 using FitnessApp.Core.Plan;
-using FitnessApp.Core.Product;
+using FitnessApp.Core.Products;
 using FitnessApp.Core.Trainer;
 using FitnessApp.Core.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -27,9 +27,9 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<PricingPlan> PricingPlans { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductImages> ProductImages { get; set; }
-    public DbSet<AdditionProduct> AdditionProducts { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<TagProduct> TagProducts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

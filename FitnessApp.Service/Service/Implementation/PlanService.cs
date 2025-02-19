@@ -1,11 +1,15 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using FitnessApp.Core;
 using FitnessApp.Core.Plan;
+using FitnessApp.Core.User;
 using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Plan;
 using FitnessApp.Service.Helper.Exception.Base;
 using FitnessApp.Service.Helper.Exception.Plan;
 using FitnessApp.Service.Service.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace FitnessApp.Service.Service.Implementation;
 
@@ -13,11 +17,13 @@ public class PlanService : IPlanService
 {
     private readonly IPlanRepository _repository;
     private readonly IMapper _mapper;
+    private readonly UserManager<AppUser> _manager;
 
-    public PlanService(IPlanRepository repository, IMapper mapper)
+    public PlanService(IPlanRepository repository, IMapper mapper, UserManager<AppUser> manager)
     {
         _repository = repository;
         _mapper = mapper;
+        _manager = manager;
     }
 
     public async Task<CreatePlanDto> CreateAsync(CreatePlanDto createPlanDto)
@@ -56,7 +62,7 @@ public class PlanService : IPlanService
 
     public async Task<UpdatePlanDto> UpdateAsync(UpdatePlanDto updatePlanDto)
     {
-        if (updatePlanDto.Id<= 0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
+        if (updatePlanDto.Id <= 0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
         var plan = await _repository.GetByIdAsync(updatePlanDto.Id);
         if (plan == null) throw new NotFoundException("Plan tapılmadı!!!", 404);
         if (await _repository.IsExistAsync(x => x.Name == updatePlanDto.Name
@@ -64,7 +70,7 @@ public class PlanService : IPlanService
         {
             throw new PlanException("Hal hazirda eyni adda plan var", 400);
         }
-        
+
         _mapper.Map(updatePlanDto, plan);
         _repository.Update(plan);
         await _repository.SaveChangesAsync();

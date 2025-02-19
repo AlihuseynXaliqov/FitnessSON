@@ -6,7 +6,7 @@ namespace FitnessApp.Service.Service.Interface;
 public interface IAuthService
 {
     Task<string> RegisterAsync(RegisterDto registerDto);
-    Task<string> LoginAsync(LoginDto loginDto);
+    Task<object> LoginAsync(LoginDto loginDto);
     Task LogoutAsync();
     Task<string> SubmitRegistration(SubmitRegisterDto dto);
     Task<string> ResendConfirmationCode(ResendCodeDto dto);

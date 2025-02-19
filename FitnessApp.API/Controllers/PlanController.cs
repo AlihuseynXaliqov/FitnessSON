@@ -52,4 +52,6 @@ public class PlanController : ControllerBase
         await _service.DeleteAsync(id);
         return Ok();
     }
+    
+    
 }

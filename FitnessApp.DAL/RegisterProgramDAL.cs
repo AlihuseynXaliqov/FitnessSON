@@ -15,7 +15,10 @@ public static class RegisterProgramDAL
         services.AddScoped<IPositionRepository, PositionRepository>();
         services.AddScoped<IPostRepository, PostRepository>();
         services.AddScoped<IPlanRepository, PlanRepository>();
+        services.AddScoped<ISubscribePlanRepository, SubscribePlanRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ITagRepository, TagRepository>();
 
     }
 }

@@ -1,13 +1,11 @@
-﻿using FitnessApp.Core;
-using FitnessApp.Core.Class;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FitnessApp.DAL.Configuration;
+namespace FitnessApp.DAL.Configuration.Schedule;
 
-public class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>
+public class ScheduleConfiguration : IEntityTypeConfiguration<Core.Class.Schedule>
 {
-    public void Configure(EntityTypeBuilder<Schedule> builder)
+    public void Configure(EntityTypeBuilder<Core.Class.Schedule> builder)
     {
         builder.HasOne(s => s.Class)
             .WithMany(c => c.Schedules)

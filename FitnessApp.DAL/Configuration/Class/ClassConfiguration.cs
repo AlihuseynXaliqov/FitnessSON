@@ -1,9 +1,8 @@
-﻿using FitnessApp.Core;
-using FitnessApp.Core.Class;
+﻿using FitnessApp.Core.Class;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FitnessApp.DAL.Configuration;
+namespace FitnessApp.DAL.Configuration.Class;
 
 public class ClassConfiguration:IEntityTypeConfiguration<Classes>
 {

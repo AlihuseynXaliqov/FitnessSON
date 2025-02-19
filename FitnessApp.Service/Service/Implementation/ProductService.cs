@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FitnessApp.Core.Product;
+using FitnessApp.Core.Products;
 using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Product;
 using FitnessApp.Service.Service.Interface;

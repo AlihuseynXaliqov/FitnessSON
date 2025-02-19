@@ -257,7 +257,7 @@ namespace FitnessApp.DAL.Migrations
                     b.ToTable("PricingPlans");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.AdditionProduct", b =>
+            modelBuilder.Entity("FitnessApp.Core.Plan.UserPlan", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -265,24 +265,41 @@ namespace FitnessApp.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Color")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PlanId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("PlanId");
 
-                    b.ToTable("AdditionProducts");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPlan");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.Category", b =>
+            modelBuilder.Entity("FitnessApp.Core.Products.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -308,7 +325,7 @@ namespace FitnessApp.DAL.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.Product", b =>
+            modelBuilder.Entity("FitnessApp.Core.Products.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -316,45 +333,62 @@ namespace FitnessApp.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(18,2)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsOnSale")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Rate")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("SKU")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("Size")
+                        .HasColumnType("int");
 
                     b.Property<int>("StockQuantity")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -366,7 +400,7 @@ namespace FitnessApp.DAL.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.ProductImages", b =>
+            modelBuilder.Entity("FitnessApp.Core.Products.ProductImages", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -384,7 +418,7 @@ namespace FitnessApp.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateAt")
@@ -397,7 +431,7 @@ namespace FitnessApp.DAL.Migrations
                     b.ToTable("ProductImages");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.Tag", b =>
+            modelBuilder.Entity("FitnessApp.Core.Products.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -421,6 +455,38 @@ namespace FitnessApp.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("FitnessApp.Core.Products.TagProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("TagProducts");
                 });
 
             modelBuilder.Entity("FitnessApp.Core.Trainer.Trainer", b =>
@@ -786,29 +852,62 @@ namespace FitnessApp.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.AdditionProduct", b =>
+            modelBuilder.Entity("FitnessApp.Core.Plan.UserPlan", b =>
                 {
-                    b.HasOne("FitnessApp.Core.Product.Product", null)
-                        .WithMany("AdditionProducts")
-                        .HasForeignKey("ProductId");
+                    b.HasOne("FitnessApp.Core.Plan.PricingPlan", "Plan")
+                        .WithMany("UserPlans")
+                        .HasForeignKey("PlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FitnessApp.Core.User.AppUser", "User")
+                        .WithMany("UserPlans")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Plan");
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.Product", b =>
+            modelBuilder.Entity("FitnessApp.Core.Products.Product", b =>
                 {
-                    b.HasOne("FitnessApp.Core.Product.Category", null)
+                    b.HasOne("FitnessApp.Core.Products.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.ProductImages", b =>
+            modelBuilder.Entity("FitnessApp.Core.Products.ProductImages", b =>
                 {
-                    b.HasOne("FitnessApp.Core.Product.Product", "Product")
+                    b.HasOne("FitnessApp.Core.Products.Product", "Product")
                         .WithMany("ProductImages")
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("FitnessApp.Core.Products.TagProduct", b =>
+                {
+                    b.HasOne("FitnessApp.Core.Products.Product", "Product")
+                        .WithMany("TagProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FitnessApp.Core.Products.Tag", "Tag")
+                        .WithMany("TagProducts")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Product");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("FitnessApp.Core.Trainer.Trainer", b =>
@@ -880,16 +979,26 @@ namespace FitnessApp.DAL.Migrations
                     b.Navigation("TrainersClasses");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.Category", b =>
+            modelBuilder.Entity("FitnessApp.Core.Plan.PricingPlan", b =>
+                {
+                    b.Navigation("UserPlans");
+                });
+
+            modelBuilder.Entity("FitnessApp.Core.Products.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("FitnessApp.Core.Product.Product", b =>
+            modelBuilder.Entity("FitnessApp.Core.Products.Product", b =>
                 {
-                    b.Navigation("AdditionProducts");
-
                     b.Navigation("ProductImages");
+
+                    b.Navigation("TagProducts");
+                });
+
+            modelBuilder.Entity("FitnessApp.Core.Products.Tag", b =>
+                {
+                    b.Navigation("TagProducts");
                 });
 
             modelBuilder.Entity("FitnessApp.Core.Trainer.Trainer", b =>
@@ -909,6 +1018,8 @@ namespace FitnessApp.DAL.Migrations
                     b.Navigation("BlogPosts");
 
                     b.Navigation("ClientFeedBacks");
+
+                    b.Navigation("UserPlans");
                 });
 #pragma warning restore 612, 618
         }

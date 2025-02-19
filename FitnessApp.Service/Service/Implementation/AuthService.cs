@@ -163,7 +163,7 @@ public class AuthService : IAuthService
     }
 
 
-    public async Task<string> LoginAsync(LoginDto loginDto)
+    public async Task<object> LoginAsync(LoginDto loginDto)
     {
         var user = await _userManager.FindByNameAsync(loginDto.UsernameOrEmail)
                    ?? await _userManager.FindByEmailAsync(loginDto.UsernameOrEmail);
@@ -201,7 +201,10 @@ public class AuthService : IAuthService
             expires: DateTime.UtcNow.AddDays(1)
         );
 
-        return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+        return new
+        {
+            Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken)
+        };
     }
 
     public async Task<string> ForgetPasswordAsync(ForgetPasswordDto dto)

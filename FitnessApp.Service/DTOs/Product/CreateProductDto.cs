@@ -1,6 +1,4 @@
-﻿using FitnessApp.Core.Product;
-
-namespace FitnessApp.Service.DTOs.Product;
+﻿namespace FitnessApp.Service.DTOs.Product;
 
 public class CreateProductDto
 {
@@ -16,6 +14,10 @@ public class CreateProductDto
     public int StockQuantity { get; set; }
     public bool IsOnSale { get; set; }
     public string ImageUrl { get; set; }
+    public int? Size { get; set; }
+    public string? Color { get; set; }
+    public int CategoryId { get; set; }
+    public ICollection<int> TagIds { get; set; }
     public ICollection<ProductImagesDto> ProductImages { get; set; }
-    public ICollection<AdditionProduct>? AdditionProducts { get; set; }
+    
 }

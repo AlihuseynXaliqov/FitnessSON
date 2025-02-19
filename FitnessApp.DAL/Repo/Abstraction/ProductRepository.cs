@@ -1,4 +1,4 @@
-﻿using FitnessApp.Core.Product;
+﻿using FitnessApp.Core.Products;
 using FitnessApp.DAL.Repo.Interface;
 
 namespace FitnessApp.DAL.Repo.Abstraction;

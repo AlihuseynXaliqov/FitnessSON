@@ -1,5 +1,4 @@
-﻿using FitnessApp.Core.Product;
-using FitnessApp.Service.DTOs.Product;
+﻿using FitnessApp.Service.DTOs.Product;
 
 namespace FitnessApp.Service.Service.Interface;
 

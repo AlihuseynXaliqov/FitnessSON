@@ -1,6 +1,6 @@
 ﻿using FitnessApp.Core.Base;
 
-namespace FitnessApp.Core.Product;
+namespace FitnessApp.Core.Products;
 
 public class Product : BaseEntity
 {
@@ -16,8 +16,10 @@ public class Product : BaseEntity
     public int StockQuantity { get; set; }
     public bool IsOnSale { get; set; }
     public string ImageUrl { get; set; }
+    public int? Size { get; set; }
+    public string? Color { get; set; }
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
     public ICollection<ProductImages> ProductImages { get; set; }
-
-    /*public string Category { get; set; }
-    public string Tags { get; set; }*/
+    public ICollection<TagProduct> TagProducts { get; set; }
 }

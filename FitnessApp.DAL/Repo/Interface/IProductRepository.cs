@@ -1,4 +1,4 @@
-﻿using FitnessApp.Core.Product;
+﻿using FitnessApp.Core.Products;
 
 namespace FitnessApp.DAL.Repo.Interface;
 

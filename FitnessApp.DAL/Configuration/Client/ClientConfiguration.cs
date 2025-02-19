@@ -1,9 +1,8 @@
-﻿using FitnessApp.Core;
-using FitnessApp.Core.FeedBack;
+﻿using FitnessApp.Core.FeedBack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FitnessApp.DAL.Configuration;
+namespace FitnessApp.DAL.Configuration.Client;
 
 public class ClientConfiguration:IEntityTypeConfiguration<ClientFeedBack>
 {

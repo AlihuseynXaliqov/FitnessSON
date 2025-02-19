@@ -19,12 +19,14 @@ public class TrainerController: ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public IActionResult GetAllTrainers()
     {
         return Ok(_trainerService.GetTrainers());
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetTrainerById(int id)
     {
         return Ok(await _trainerService.GetTrainerByIdAsync(id));

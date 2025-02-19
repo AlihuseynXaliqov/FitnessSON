@@ -10,4 +10,6 @@ public class PricingPlan:BaseEntity
     public string Description { get; set; }
     public bool withTrainer { get; set; } 
     public List<string> Features { get; set; }
+    
+    public ICollection<UserPlan> UserPlans { get; set; }
 }
