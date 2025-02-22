@@ -1,4 +1,6 @@
 ﻿using FitnessApp.Core.Base;
+using FitnessApp.Core.Cart;
+using FitnessApp.Core.Wish;
 
 namespace FitnessApp.Core.Products;
 
@@ -20,6 +22,8 @@ public class Product : BaseEntity
     public string? Color { get; set; }
     public int CategoryId { get; set; }
     public Category Category { get; set; }
+    public ICollection<Wishlist> wishlists { get; set; }
+    public ICollection<CartItem> CartItems { get; set; }
     public ICollection<ProductImages> ProductImages { get; set; }
     public ICollection<TagProduct> TagProducts { get; set; }
 }

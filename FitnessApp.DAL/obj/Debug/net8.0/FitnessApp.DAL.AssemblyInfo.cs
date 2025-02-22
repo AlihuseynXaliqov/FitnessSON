@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FitnessApp.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddc91f97c1a44cd5ceca5a979a5703352b4497b1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c1542b112883d94a70e3933e064eabaa768a9d0")]
 [assembly: System.Reflection.AssemblyProductAttribute("FitnessApp.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FitnessApp.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

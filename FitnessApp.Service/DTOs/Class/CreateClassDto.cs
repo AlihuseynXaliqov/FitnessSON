@@ -22,7 +22,7 @@ public class CreateClassDtoValidator : AbstractValidator<CreateClassDto>
         RuleFor(x => x.Description)
             .NotEmpty().WithMessage("Təsvir boş ola bilməz")
             .MinimumLength(10).WithMessage("Təsvir ən azı 10 simvoldan ibarət olmalıdır")
-            .MaximumLength(250).WithMessage("Təsvir 250 simvoldan çox ola bilməz");
+            .MaximumLength(500).WithMessage("Təsvir 500 simvoldan çox ola bilməz");
 
         RuleFor(x => x.ImageUrl)
             .NotEmpty().WithMessage("Şəkil URL-i boş ola bilməz");

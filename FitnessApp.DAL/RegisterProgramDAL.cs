@@ -19,6 +19,9 @@ public static class RegisterProgramDAL
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ITagRepository, TagRepository>();
+        services.AddScoped<IWishlistRepository, WishlistRepository>();
+        services.AddScoped<ICartItemsRepository, CartItemsRepository>();
+        services.AddScoped<ICouponRepository, CouponRepository>();
 
     }
 }

@@ -1,12 +1,14 @@
 ﻿using System.Reflection;
 using FitnessApp.Core;
 using FitnessApp.Core.Blog;
+using FitnessApp.Core.Cart;
 using FitnessApp.Core.Class;
 using FitnessApp.Core.FeedBack;
 using FitnessApp.Core.Plan;
 using FitnessApp.Core.Products;
 using FitnessApp.Core.Trainer;
 using FitnessApp.Core.User;
+using FitnessApp.Core.Wish;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +32,9 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<Tag> Tags { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<TagProduct> TagProducts { get; set; }
+    public DbSet<Coupon> Coupons { get; set; }
+    public DbSet<Wishlist> Wishlists { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -5,6 +5,7 @@ using FitnessApp.Core;
 using FitnessApp.Core.User;
 using FitnessApp.DAL;
 using FitnessApp.Service;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -113,10 +114,14 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddHangfire
+    (config => config.UseSqlServerStorage(builder.Configuration.GetConnectionString("deploy")));
+builder.Services.AddHangfireServer();
 //Add mapper info
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddRegisterService(builder.Configuration);
 builder.Services.AddRegisterDAL();
+
 
 
 var app = builder.Build();
@@ -125,7 +130,7 @@ app.UseGlobalException();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseSeedData();
-
+app.UseHangfireDashboard();
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 

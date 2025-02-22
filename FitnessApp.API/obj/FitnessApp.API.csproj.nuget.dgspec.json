@@ -53,6 +53,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.8.18, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[4.10.0, )"
