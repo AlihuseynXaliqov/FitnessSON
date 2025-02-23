@@ -3,6 +3,7 @@ using FitnessApp.Core;
 using FitnessApp.Core.Blog;
 using FitnessApp.Core.Cart;
 using FitnessApp.Core.Class;
+using FitnessApp.Core.Contact;
 using FitnessApp.Core.FeedBack;
 using FitnessApp.Core.Plan;
 using FitnessApp.Core.Products;
@@ -34,6 +35,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<TagProduct> TagProducts { get; set; }
     public DbSet<Coupon> Coupons { get; set; }
     public DbSet<Wishlist> Wishlists { get; set; }
+    public DbSet<ContactMessage> ContactMessages { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)

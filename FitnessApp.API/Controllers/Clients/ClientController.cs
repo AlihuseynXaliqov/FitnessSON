@@ -53,12 +53,14 @@ public class ClientController : ControllerBase
         return Ok();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet("confirmedFeedbacks")]
     public IActionResult GetUnconfirmedFeedbacks()
     {
         return Ok(_service.GetAllUnconfirmedFeedBack());
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("unconfirmedFeedbacks/{id}")]
     public async Task<IActionResult> UpdateUnconfirmedFeedbacks(int id)
     {

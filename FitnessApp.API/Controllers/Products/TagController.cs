@@ -1,12 +1,15 @@
 ﻿using FitnessApp.Service.DTOs.Tag;
 using FitnessApp.Service.Service.Interface;
 using FitnessApp.Service.Service.Interface.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.API.Controllers.Products;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(Roles = "Admin")]
+
 public class TagController:ControllerBase
 {
     private readonly ITagService _service;

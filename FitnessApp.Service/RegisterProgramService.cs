@@ -20,6 +20,8 @@ using FitnessApp.Service.Service.Interface.Trainers;
 using FitnessApp.Service.Service.Interface.Users;
 using FitnessApp.Service.Service.Interface.Wish;
 using FluentValidation.AspNetCore;
+using Hangfire;
+using HangfireBasicAuthenticationFilter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,11 +48,47 @@ public static class RegisterProgramService
         services.AddScoped<IWishlistService, WishlistService>();
         services.AddScoped<ISubscribePlanService, SubscribePlanService>();
         services.AddScoped<ICouponService, CouponService>();
+        services.AddScoped<IContactService, ContactService>();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddTransient<IMailService, MailService>();
         services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RegisterValidator>());
         services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
         services.AddHttpContextAccessor();
-
+        
     }
+    
+    
+    public static void AddHangfireDashboard(this IApplicationBuilder app, IConfiguration configuration)
+    {
+        var adminSettings = configuration.GetSection("AdminSettings");
+
+        var adminUsername = adminSettings["Username"];
+        var adminPassword = adminSettings["Password"];
+
+        app.UseHangfireDashboard("/hangfire", new DashboardOptions
+        {
+            DisplayStorageConnectionString = false,
+            Authorization =
+            [
+                new HangfireCustomBasicAuthenticationFilter
+                {
+                    User = adminUsername,
+                    Pass = adminPassword
+                }
+            ]
+        });
+    }
+    
+    public static void AddRecurringJobs(this IApplicationBuilder app)
+    {
+        RecurringJob.AddOrUpdate<AuthService>(
+            user => user.DeleteUnconfirmedUsers(), 
+            "59 23 * * *" 
+        );
+        RecurringJob.AddOrUpdate<SubscribePlanService>(
+            user => user.CheckAndDeactivateExpiredPlans(), 
+            "59 23 * * *" 
+        );
+    }
+
 }

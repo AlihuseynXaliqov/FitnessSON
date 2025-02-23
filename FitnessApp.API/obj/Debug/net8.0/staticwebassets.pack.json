@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Agent\\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg"
     },
     {
+      "Id": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Client\\fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg",
+      "PackagePath": "staticwebassets\\Client\\fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FitnessApp.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

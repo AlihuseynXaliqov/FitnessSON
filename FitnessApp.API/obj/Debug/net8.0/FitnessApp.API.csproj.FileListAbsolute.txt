@@ -189,3 +189,5 @@ C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.API\bin\Debug\net8.0\sv\Hangf
 C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.API\bin\Debug\net8.0\tr-TR\Hangfire.Core.resources.dll
 C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.API\bin\Debug\net8.0\zh-TW\Hangfire.Core.resources.dll
 C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.API\bin\Debug\net8.0\zh\Hangfire.Core.resources.dll
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.API\bin\Debug\net8.0\HangfireBasicAuthenticationFilter.dll
+C:\Users\smart\RiderProjects\FitnessApp\FitnessApp.API\bin\Debug\net8.0\Hangfire.Dashboard.BasicAuthorization.dll

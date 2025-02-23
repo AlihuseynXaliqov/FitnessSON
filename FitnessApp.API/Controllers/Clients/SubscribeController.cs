@@ -1,6 +1,7 @@
 ﻿using FitnessApp.Service.DTOs.Plan;
 using FitnessApp.Service.Service.Interface;
 using FitnessApp.Service.Service.Interface.Clients;
+using FitnessApp.Service.Service.Interface.Plan;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.API.Controllers.Clients;

@@ -25,7 +25,6 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>
     (opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("default")));
     */
-    
 
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
@@ -114,23 +113,21 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddHangfire
-    (config => config.UseSqlServerStorage(builder.Configuration.GetConnectionString("deploy")));
-builder.Services.AddHangfireServer();
+
 //Add mapper info
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddRegisterService(builder.Configuration);
-builder.Services.AddRegisterDAL();
-
+builder.Services.AddRegisterDAL(builder.Configuration);
 
 
 var app = builder.Build();
+app.AddHangfireDashboard(builder.Configuration);
+app.AddRecurringJobs();
 app.UseGlobalException();
 
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseSeedData();
-app.UseHangfireDashboard();
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 

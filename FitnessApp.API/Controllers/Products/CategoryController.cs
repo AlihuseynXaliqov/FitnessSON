@@ -1,12 +1,14 @@
 ﻿using FitnessApp.Service.DTOs.Category;
 using FitnessApp.Service.Service.Interface;
 using FitnessApp.Service.Service.Interface.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.API.Controllers.Products;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(Roles = "Admin")]
 public class CategoryController:ControllerBase
 {
     private readonly ICategoryService _service;

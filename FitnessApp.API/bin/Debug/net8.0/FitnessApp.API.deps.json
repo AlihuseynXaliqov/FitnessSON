@@ -9,7 +9,8 @@
       "FitnessApp.API/1.0.0": {
         "dependencies": {
           "FitnessApp.Service": "1.0.0",
-          "Hangfire": "1.8.18",
+          "Hangfire.Dashboard.Basic.Authentication": "7.0.1",
+          "Hangfire.Dashboard.BasicAuthorization": "1.0.2",
           "MailKit": "4.10.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.11",
           "Microsoft.AspNetCore.OpenApi": "8.0.12",
@@ -183,6 +184,32 @@
           }
         }
       },
+      "Hangfire.Dashboard.Basic.Authentication/7.0.1": {
+        "dependencies": {
+          "Hangfire.AspNetCore": "1.8.18",
+          "Hangfire.Core": "1.8.18",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Primitives": "8.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/HangfireBasicAuthenticationFilter.dll": {
+            "assemblyVersion": "7.0.1.0",
+            "fileVersion": "7.0.1.0"
+          }
+        }
+      },
+      "Hangfire.Dashboard.BasicAuthorization/1.0.2": {
+        "dependencies": {
+          "Hangfire.AspNetCore": "1.8.18",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Hangfire.Dashboard.BasicAuthorization.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        }
+      },
       "Hangfire.NetCore/1.8.18": {
         "dependencies": {
           "Hangfire.Core": "1.8.18",
@@ -256,6 +283,17 @@
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.1124.52116"
           }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.1.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.1.1",
+          "System.Text.Encodings.Web": "6.0.0"
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.1.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "8.0.0"
         }
       },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.11": {
@@ -1262,6 +1300,8 @@
       "FitnessApp.DAL/1.0.0": {
         "dependencies": {
           "FitnessApp.Core": "1.0.0",
+          "Hangfire": "1.8.18",
+          "Hangfire.SqlServer": "1.8.18",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.11",
           "Microsoft.EntityFrameworkCore": "8.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.11",
@@ -1280,6 +1320,9 @@
           "FitnessApp.DAL": "1.0.0",
           "FluentValidation": "11.11.0",
           "FluentValidation.AspNetCore": "11.3.0",
+          "Hangfire": "1.8.18",
+          "Hangfire.Dashboard.Basic.Authentication": "7.0.1",
+          "Hangfire.Dashboard.BasicAuthorization": "1.0.2",
           "MailKit": "4.10.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.11",
           "Microsoft.AspNetCore.OpenApi": "8.0.12",
@@ -1373,6 +1416,20 @@
       "path": "hangfire.core/1.8.18",
       "hashPath": "hangfire.core.1.8.18.nupkg.sha512"
     },
+    "Hangfire.Dashboard.Basic.Authentication/7.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SsWDM/FcgNOiZaG9RbOZzg9ZbAw2NJUzZY2V4ChnGaHFI3yT7CXE+LB9EshqE/MX/jT55QTtmnZ2JYy6atSJWA==",
+      "path": "hangfire.dashboard.basic.authentication/7.0.1",
+      "hashPath": "hangfire.dashboard.basic.authentication.7.0.1.nupkg.sha512"
+    },
+    "Hangfire.Dashboard.BasicAuthorization/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tlDkF4pGOA7VthYtzpmekqC9Uh5DRhemEFyK1WJhzlkn46LLVmHGtlPjADJn99EFMJH6RHBkZhJBAO9Y3MiWYA==",
+      "path": "hangfire.dashboard.basicauthorization/1.0.2",
+      "hashPath": "hangfire.dashboard.basicauthorization.1.0.2.nupkg.sha512"
+    },
     "Hangfire.NetCore/1.8.18": {
       "type": "package",
       "serviceable": true,
@@ -1421,6 +1478,20 @@
       "sha512": "sha512-w7zU4Bh6AEHsu5spE4OIoZ/z68mMvZITUl0wUAU7tS4vwc+szzht2wKitH1KwODrjHfHk0MAkyw3l6SIR62zBg==",
       "path": "microsoft.aspnetcore.cryptography.keyderivation/8.0.11",
       "hashPath": "microsoft.aspnetcore.cryptography.keyderivation.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kQUEVOU4loc8CPSb2WoHFTESqwIa8Ik7ysCBfTwzHAd0moWovc9JQLmhDIHlYLjHbyexqZAlkq/FPRUZqokebw==",
+      "path": "microsoft.aspnetcore.http.abstractions/2.1.1",
+      "hashPath": "microsoft.aspnetcore.http.abstractions.2.1.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Features/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VklZ7hWgSvHBcDtwYYkdMdI/adlf7ebxTZ9kdzAhX+gUs5jSHE9mZlTamdgf9miSsxc1QjNazHXTDJdVPZKKTw==",
+      "path": "microsoft.aspnetcore.http.features/2.1.1",
+      "hashPath": "microsoft.aspnetcore.http.features.2.1.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.11": {
       "type": "package",

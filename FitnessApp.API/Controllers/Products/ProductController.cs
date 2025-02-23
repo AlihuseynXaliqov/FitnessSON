@@ -1,12 +1,15 @@
 ﻿using FitnessApp.Service.DTOs.Product;
 using FitnessApp.Service.Service.Interface;
 using FitnessApp.Service.Service.Interface.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.API.Controllers.Products;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(Roles = "Admin")]
+
 public class ProductController : ControllerBase
 {
     private readonly IProductService _service;

@@ -18,5 +18,23 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Agent\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Client\fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>FitnessApp.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FitnessApp.API</BasePath>
+      <RelativePath>Client/fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ej7l94b3zn</Fingerprint>
+      <Integrity>asJPyLguE9YE9EXs+RkFUuNBsT0KaNOSVdgR39Gxhm4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Client\fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
   </ItemGroup>
 </Project>

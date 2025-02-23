@@ -81,7 +81,8 @@ public class AuthService : IAuthService
     
     public async Task DeleteUnconfirmedUsers()
     {
-        var expirationTime = DateTime.UtcNow.AddHours(-24);
+        var expirationTime = DateTime.UtcNow.AddMinutes(-2);
+
         var unconfirmedUsers = await _context.Users
             .Where(u => !u.EmailConfirmed && u.ConfirmKeyCreatedAt < expirationTime)
             .ToListAsync();
@@ -92,6 +93,7 @@ public class AuthService : IAuthService
             await _context.SaveChangesAsync();
         }
     }
+
 
 
     
@@ -130,8 +132,6 @@ public class AuthService : IAuthService
         {
             throw new RegisterException("Təsdiq kodunun vaxtı bitib,yeniden kod gonderin ", 400);
         }
-
-        await DeleteUnconfirmedUsers();
         await _context.SaveChangesAsync();
         return "Email uğurla təsdiqləndi!";
     }

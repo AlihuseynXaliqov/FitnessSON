@@ -1,13 +1,14 @@
 ﻿using FitnessApp.Core.Products;
 using FitnessApp.Service.DTOs.Coupon;
 using FitnessApp.Service.Service.Interface.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.API.Controllers.Products;
 
 [Route("api/[controller]")]
 [ApiController]
-
+[Authorize(Roles = "Admin")]
 public class CouponController:ControllerBase
 {
     private readonly ICouponService _couponService;

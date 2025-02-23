@@ -1,6 +1,6 @@
 ﻿using FitnessApp.Service.DTOs.Plan;
 
-namespace FitnessApp.Service.Service.Interface.Clients;
+namespace FitnessApp.Service.Service.Interface.Plan;
 
 public interface ISubscribePlanService
 {
