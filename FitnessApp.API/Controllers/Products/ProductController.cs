@@ -20,12 +20,14 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetById(int id)
     {
         return Ok(await _service.GetById(id));
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public IActionResult GetAll()
     {
         return Ok(_service.GetAll());

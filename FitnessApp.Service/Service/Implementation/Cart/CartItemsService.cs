@@ -46,16 +46,25 @@ public class CartItemsService : ICartItemsService
         await _repository.SaveChangesAsync();
     }
 
-    public async Task<ICollection<GetProductDto>> GetCartAsync(string userId)
+    public async Task<ICollection<GetCartDto>> GetCartAsync(string userId)
     {
-        var product =  _productRepository
-            .GetAll();
-        if (product == null) throw new NotFoundException("mehsul tapilmadi",400);
-        var cartItems = await _repository.GetAll().Where(c => c.UserId == userId)
-            .Include(c => c.Product)
+        var cartItems = await _repository.GetAll()
+            .Where(c => c.UserId == userId)
+            .Include(c => c.Product)  
             .ToListAsync();
+        
+        var cartDto = cartItems.Select(c => new GetCartDto()
+        {
+            Id = c.ProductId,
+            Name = c.Product.Name, 
+            Price = c.Product.Price,
+            Quantity = c.Quantity,
+            DiscountPrice = c.Product.DiscountPrice,
+            Discount = c.Product.Discount,
+            ImageUrl = c.Product.ImageUrl
+        }).ToList();
 
-        return _mapper.Map<ICollection<GetProductDto>>(cartItems.Select(c => c.Product));
+        return cartDto;
     }
 
 

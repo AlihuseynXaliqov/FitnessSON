@@ -44,5 +44,7 @@ public class ProductProfile : Profile
             .ForMember(dest => dest.TagProducts,
                 opt => opt.MapFrom(src => src.TagIds.Select(tagId => new TagProduct { TagId = tagId })))
             .ReverseMap();
+
+        CreateMap<Core.Products.Product, GetCartDto>().ReverseMap();
     }
 }

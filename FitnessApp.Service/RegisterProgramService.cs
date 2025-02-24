@@ -49,6 +49,7 @@ public static class RegisterProgramService
         services.AddScoped<ISubscribePlanService, SubscribePlanService>();
         services.AddScoped<ICouponService, CouponService>();
         services.AddScoped<IContactService, ContactService>();
+        services.AddScoped<IStripeService, StripeService>();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddTransient<IMailService, MailService>();
         services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RegisterValidator>());

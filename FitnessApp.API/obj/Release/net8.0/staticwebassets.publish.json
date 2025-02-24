@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wJcFGXe5qWVkIMdR4U3n/jhUgAOT+xaui2KMnvuKk5k=",
+  "Hash": "jSiH8lAW59qF3TGMZ3RAKsTJLP2F5b7mYunrz1VAMpY=",
   "Source": "FitnessApp.API",
   "BasePath": "_content/FitnessApp.API",
   "Mode": "Default",
@@ -36,6 +36,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Agent\\dd2b1c1f-1eea-4fc1-9354-dc2c3fcf42c2download (4).jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Client\\fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg",
+      "SourceId": "FitnessApp.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\",
+      "BasePath": "_content/FitnessApp.API",
+      "RelativePath": "Client/fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ej7l94b3zn",
+      "Integrity": "asJPyLguE9YE9EXs+RkFUuNBsT0KaNOSVdgR39Gxhm4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Client\\fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg"
     }
   ],
   "Endpoints": [
@@ -118,6 +139,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-pG5VnFkm313QEs/HTDxzv70++/Vhpqi4GRt9OXS10Sw="
+        }
+      ]
+    },
+    {
+      "Route": "Client/fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.ej7l94b3zn.jpg",
+      "AssetFile": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Client\\fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3401"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"asJPyLguE9YE9EXs+RkFUuNBsT0KaNOSVdgR39Gxhm4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 23 Feb 2025 12:28:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ej7l94b3zn"
+        },
+        {
+          "Name": "label",
+          "Value": "Client/fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-asJPyLguE9YE9EXs+RkFUuNBsT0KaNOSVdgR39Gxhm4="
+        }
+      ]
+    },
+    {
+      "Route": "Client/fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg",
+      "AssetFile": "C:\\Users\\smart\\RiderProjects\\FitnessApp\\FitnessApp.API\\wwwroot\\Client\\fbc17b38-2320-46f2-bccd-d3cacb63f0f1client_01-100x100.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3401"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"asJPyLguE9YE9EXs+RkFUuNBsT0KaNOSVdgR39Gxhm4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 23 Feb 2025 12:28:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-asJPyLguE9YE9EXs+RkFUuNBsT0KaNOSVdgR39Gxhm4="
         }
       ]
     }

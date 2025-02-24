@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Text;
 using FitnessApp.API;
 using FitnessApp.Core;
+using FitnessApp.Core.Stripe;
 using FitnessApp.Core.User;
 using FitnessApp.DAL;
 using FitnessApp.Service;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Stripe;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -113,7 +115,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 //Add mapper info
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddRegisterService(builder.Configuration);
@@ -124,6 +126,7 @@ var app = builder.Build();
 app.AddHangfireDashboard(builder.Configuration);
 app.AddRecurringJobs();
 app.UseGlobalException();
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:Secretkey"];
 
 app.UseSwagger();
 app.UseSwaggerUI();

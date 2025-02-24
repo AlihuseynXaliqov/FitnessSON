@@ -74,7 +74,7 @@ public class ClientService : IClientService
         {
             ToEmail = user.Email,
             Subject = "Təşəkkürlər! Rəyiniz üçün təşəkkür edirik",
-            Body = "Rəyiniz üçün çox təşəkkür edirik. Komandamız rəylərinizi diqqətlə qiymətləndirir!<br><br>" +
+            Body = "Rəyiniz üçün çox təşəkkür edirik. Komandamız rəylərinizwwwwwwwwwwwi diqqətlə qiymətləndirir!<br><br>" +
                    "Ən yaxşı arzularla,<br> FitnessApp Komandası",
         };
 

@@ -6,7 +6,7 @@ public interface ICartItemsService
 {
     Task RemoveFromCartAsync(int productId, string userId);
     Task ClearCartAsync(string userId);
-    Task<ICollection<GetProductDto>> GetCartAsync(string userId);
+    Task<ICollection<GetCartDto>> GetCartAsync(string userId);
     Task Create(string userId, int productId, int quantity);
     Task UpdateCartAsync(int productId, string userId, int quantity);
 }
