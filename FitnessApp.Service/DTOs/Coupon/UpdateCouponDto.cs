@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Service.DTOs.Coupon;
 
-public class UpdateCouponDto
+public record UpdateCouponDto
 {
     public int Id { get; set; }
     public string Code { get; set; }

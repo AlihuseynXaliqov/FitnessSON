@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Post;
 
-public class CreatePostDto
+public record CreatePostDto
 {
     public string Name { get; set; }
     public string Description { get; set; }

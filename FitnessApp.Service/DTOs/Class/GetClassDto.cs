@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Service.DTOs.Class;
 
-public class GetClassDto
+public record GetClassDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

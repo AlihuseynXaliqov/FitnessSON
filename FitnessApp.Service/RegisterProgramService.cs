@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using FitnessApp.Core.Stripe;
 using FitnessApp.Service.DTOs.User;
 using FitnessApp.Service.Helper.Email;
 using FitnessApp.Service.Service.Implementation;
@@ -25,6 +26,10 @@ using HangfireBasicAuthenticationFilter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Stripe;
+using CouponService = FitnessApp.Service.Service.Implementation.Products.CouponService;
+using PlanService = FitnessApp.Service.Service.Implementation.Plan.PlanService;
+using ProductService = FitnessApp.Service.Service.Implementation.Products.ProductService;
 
 namespace FitnessApp.Service;
 
@@ -49,7 +54,6 @@ public static class RegisterProgramService
         services.AddScoped<ISubscribePlanService, SubscribePlanService>();
         services.AddScoped<ICouponService, CouponService>();
         services.AddScoped<IContactService, ContactService>();
-        services.AddScoped<IStripeService, StripeService>();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddTransient<IMailService, MailService>();
         services.AddControllers().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RegisterValidator>());
@@ -90,6 +94,15 @@ public static class RegisterProgramService
             user => user.CheckAndDeactivateExpiredPlans(), 
             "59 23 * * *" 
         );
+    }
+    
+    public static void AddStripe(this IServiceCollection services, IConfiguration configuration)
+    {
+        var stripeSettings = configuration.GetSection("StripeSettings");
+        StripeConfiguration.ApiKey = stripeSettings["SecretKey"];
+
+        services.Configure<StripeSettings>(configuration.GetSection("StripeSettings"));
+        services.AddScoped<StripeService>();
     }
 
 }

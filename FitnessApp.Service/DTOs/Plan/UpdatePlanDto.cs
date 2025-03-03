@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace FitnessApp.Service.DTOs.Plan;
 
-public class UpdatePlanDto
+public record UpdatePlanDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Class;
 
-public class ClassScheduleDto
+public record ClassScheduleDto
 {
     public string TrainerName { get; set; }
     public DayOfWeek DayOfWeek { get; set; }

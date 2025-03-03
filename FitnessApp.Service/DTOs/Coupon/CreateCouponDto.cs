@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Service.DTOs.Coupon;
 
-public class CreateCouponDto
+public record CreateCouponDto
 {
     public string Code { get; set; }
     public decimal DiscountAmount { get; set; }

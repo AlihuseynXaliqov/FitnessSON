@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Plan;
 
-public class SubscribePlanDto
+public record SubscribePlanDto
 {
     public int PlanId { get; set; }
     public DateTime StartDate { get; set; }

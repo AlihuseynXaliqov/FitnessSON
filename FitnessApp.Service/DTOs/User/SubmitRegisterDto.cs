@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.User;
 
-public class SubmitRegisterDto
+public record SubmitRegisterDto
 {
     public string Email { get; set; }
     public string ConfirmKey { get; set; }

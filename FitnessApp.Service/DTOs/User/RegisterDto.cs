@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace FitnessApp.Service.DTOs.User;
 
-public class RegisterDto
+public record RegisterDto
 {
  
     public string? FirstName { get; set; }

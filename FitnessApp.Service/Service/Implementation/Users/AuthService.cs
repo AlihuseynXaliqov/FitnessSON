@@ -64,7 +64,8 @@ public class AuthService : IAuthService
         appUser.ConfirmKey = confirmKey;
         appUser.ConfirmKeyCreatedAt = DateTime.UtcNow;
         await _context.SaveChangesAsync();
-        var link = $"http://localhost:5179/auth/submit-registration?email={registerDto.Email}&token={token}";
+        
+        var link = $"{_config["BaseUrl"]}/auth/submit-registration?email={registerDto.Email}&token={token}";
 
         MailRequest mailRequest = new MailRequest()
         {
@@ -215,7 +216,7 @@ public class AuthService : IAuthService
         }
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-        var link = $"http://localhost:5179/auth/reset-password?email={dto.Email}&token={token}";
+        var link = $"{_config["BaseUrl"]}/auth/reset-password?email={dto.Email}&token={token}";
         MailRequest mailRequest = new MailRequest()
         {
             ToEmail = dto.Email,

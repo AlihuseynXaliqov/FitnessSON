@@ -1358,7 +1358,7 @@
           }
         }
       },
-      "Stripe.net/47.4.0-beta.1": {
+      "Stripe.net/47.4.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
@@ -4177,10 +4177,10 @@
         "postgresql.png"
       ]
     },
-    "Stripe.net/47.4.0-beta.1": {
-      "sha512": "5sKIlCaptone95pQlB34ShQPEUaJT8K/dXgTepkRUEX8rJ8r8giEF7kLaapk1Frfz5XKrnluD9JMChc856O5Lg==",
+    "Stripe.net/47.4.0": {
+      "sha512": "paFQ1NFjdjd3BHkYS1qOmy7T+Bz663tgAC0unsGu7GLHrWTl5SISj6ukGB6nuycV6a1GA9VZr18eCi4pWNpE2w==",
       "type": "package",
-      "path": "stripe.net/47.4.0-beta.1",
+      "path": "stripe.net/47.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4201,7 +4201,7 @@
         "lib/netcoreapp3.1/Stripe.net.xml",
         "lib/netstandard2.0/Stripe.net.dll",
         "lib/netstandard2.0/Stripe.net.xml",
-        "stripe.net.47.4.0-beta.1.nupkg.sha512",
+        "stripe.net.47.4.0.nupkg.sha512",
         "stripe.net.nuspec"
       ]
     },
@@ -5234,6 +5234,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.12",
       "Microsoft.IdentityModel.JsonWebTokens >= 7.1.2",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.11",
+      "Stripe.net >= 47.4.0",
       "Swashbuckle.AspNetCore >= 6.6.2",
       "System.IdentityModel.Tokens.Jwt >= 7.1.2"
     ]
@@ -5328,6 +5329,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[8.0.11, )"
+          },
+          "Stripe.net": {
+            "target": "Package",
+            "version": "[47.4.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

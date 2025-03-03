@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Contact;
 
-public class CreateContactDto
+public record CreateContactDto
 {
     public string Name { get; set; }
     public string Email { get; set; }

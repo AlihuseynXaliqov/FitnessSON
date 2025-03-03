@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Service.DTOs.Contact;
 
-public class GetContactDto
+public record GetContactDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

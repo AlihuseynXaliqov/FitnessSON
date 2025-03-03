@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace FitnessApp.Service.DTOs.Plan;
 
-public class CreatePlanDto
+public record CreatePlanDto
 {
     public string Name { get; set; }
     public DurationType Duration { get; set; }

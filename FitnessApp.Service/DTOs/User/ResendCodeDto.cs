@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.User;
 
-public class ResendCodeDto
+public record ResendCodeDto
 {
     public string Email { get; set; }
 }

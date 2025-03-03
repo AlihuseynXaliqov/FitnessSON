@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Schedule;
 
-public class CreateScheduleDto
+public record CreateScheduleDto
 {
     public int ClassId { get; set; }
     public int TrainerId { get; set; }

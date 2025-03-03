@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Service.DTOs.Trainer;
 
-public class GetTrainerDto
+public record GetTrainerDto
 {
     public int Id { get; set; }
     public string FirstName { get; set; }  

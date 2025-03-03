@@ -14,7 +14,7 @@ public class CartItemsService : ICartItemsService
     private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
 
-    public CartItemsService(ICartItemsRepository repository, IProductRepository productRepository,IMapper mapper)
+    public CartItemsService(ICartItemsRepository repository, IProductRepository productRepository, IMapper mapper)
     {
         _repository = repository;
         _productRepository = productRepository;
@@ -41,8 +41,8 @@ public class CartItemsService : ICartItemsService
                 Quantity = quantity
             };
             await _repository.AddAsync(cart);
-          
         }
+
         await _repository.SaveChangesAsync();
     }
 
@@ -50,13 +50,13 @@ public class CartItemsService : ICartItemsService
     {
         var cartItems = await _repository.GetAll()
             .Where(c => c.UserId == userId)
-            .Include(c => c.Product)  
+            .Include(c => c.Product)
             .ToListAsync();
-        
+
         var cartDto = cartItems.Select(c => new GetCartDto()
         {
             Id = c.ProductId,
-            Name = c.Product.Name, 
+            Name = c.Product.Name,
             Price = c.Product.Price,
             Quantity = c.Quantity,
             DiscountPrice = c.Product.DiscountPrice,
@@ -75,11 +75,11 @@ public class CartItemsService : ICartItemsService
 
         if (cartItem == null)
         {
-            throw new NotFoundException("Basket tapilmadi",400);
+            throw new NotFoundException("Basket tapilmadi", 400);
         }
 
         cartItem.Quantity = quantity;
-         _repository.Update(cartItem);
+        _repository.Update(cartItem);
         await _repository.SaveChangesAsync();
     }
 
@@ -91,10 +91,10 @@ public class CartItemsService : ICartItemsService
 
         if (cartItem == null)
         {
-            throw new NotFoundException("Basket tapilmadi",400);
+            throw new NotFoundException("Basket tapilmadi", 400);
         }
 
-         _repository.Delete(cartItem);
+        _repository.Delete(cartItem);
         await _repository.SaveChangesAsync();
     }
 
@@ -106,7 +106,7 @@ public class CartItemsService : ICartItemsService
         {
             foreach (var cartItem in cartItems)
             {
-                 _repository.Delete(cartItem);
+                _repository.Delete(cartItem);
             }
 
             await _repository.SaveChangesAsync();

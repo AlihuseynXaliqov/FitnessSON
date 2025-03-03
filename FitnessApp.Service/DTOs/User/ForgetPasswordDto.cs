@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.User;
 
-public class ForgetPasswordDto
+public record ForgetPasswordDto
 {
     public string Email { get; set; }
 }

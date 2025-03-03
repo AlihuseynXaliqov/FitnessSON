@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Service.DTOs.Post;
 
-public class GetPostDto
+public record GetPostDto
 {
     public int Id { get; set; }
     public string Description { get; set; }

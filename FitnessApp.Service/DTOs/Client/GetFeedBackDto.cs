@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Service.DTOs.Client;
 
-public class GetFeedBackDto
+public record GetFeedBackDto
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

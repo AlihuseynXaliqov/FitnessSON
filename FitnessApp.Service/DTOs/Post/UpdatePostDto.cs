@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Post;
 
-public class UpdatePostDto
+public record UpdatePostDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

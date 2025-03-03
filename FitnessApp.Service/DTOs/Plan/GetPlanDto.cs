@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Plan;
 
-public class GetPlanDto
+public record GetPlanDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

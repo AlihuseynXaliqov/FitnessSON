@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Position;
 
-public class CreatePositionDto
+public record CreatePositionDto
 {
     public string Name { get; set; }
 }

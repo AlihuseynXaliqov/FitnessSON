@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Client;
 
-public class UpdateFeedBackDto
+public record UpdateFeedBackDto
 {
     public int Id { get; set; }
     public string ImageUrl { get; set; }

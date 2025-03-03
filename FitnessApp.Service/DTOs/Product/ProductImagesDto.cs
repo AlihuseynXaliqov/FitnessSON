@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Product;
 
-public class ProductImagesDto
+public record ProductImagesDto
 {
     public string ImageUrl { get; set; }
 }

@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.Trainer;
 
-public class UpdateTrainerDto
+public record UpdateTrainerDto
 {
     public int Id { get; set; }
     public string FirstName { get; set; }  

@@ -115,18 +115,18 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 //Add mapper info
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddRegisterService(builder.Configuration);
 builder.Services.AddRegisterDAL(builder.Configuration);
+builder.Services.AddStripe(builder.Configuration);
 
 
 var app = builder.Build();
 app.AddHangfireDashboard(builder.Configuration);
 app.AddRecurringJobs();
 app.UseGlobalException();
-StripeConfiguration.ApiKey = builder.Configuration["Stripe:Secretkey"];
+
 
 app.UseSwagger();
 app.UseSwaggerUI();

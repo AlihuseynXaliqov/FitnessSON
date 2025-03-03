@@ -1,13 +1,16 @@
 ﻿using System.Reflection;
 using System.Text;
 using FitnessApp.Core;
+using FitnessApp.Core.Stripe;
 using FitnessApp.Core.User;
 using FitnessApp.DAL;
+using FitnessApp.Service.Service.Implementation.Cart;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Stripe;
 
 namespace FitnessApp.API;
 
@@ -68,4 +71,5 @@ public static class RegisterProgramAPI
             }
         }
     }
+    
 }

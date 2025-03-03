@@ -2,7 +2,7 @@
 
 namespace FitnessApp.Service.DTOs.User;
 
-public class ResetPasswordDto
+public record ResetPasswordDto
 {
     public string Email { get; set; }
     public string Token { get; set; }
