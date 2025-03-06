@@ -29,6 +29,14 @@ public class CouponController:ControllerBase
     {
         return Ok(await _couponService.GetById(id));
     }
+    
+    [HttpPost("apply")]
+    [AllowAnonymous]
+    public async Task<IActionResult> ApplyCoupon([FromBody] ApplyCouponRequestDto couponRequestDto)
+    {
+        var finalAmount = await _couponService.ApplyCouponAsync(couponRequestDto);
+        return Ok(new { finalAmount });
+    }
 
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateCouponDto dto)

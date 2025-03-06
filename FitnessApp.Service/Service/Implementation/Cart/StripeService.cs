@@ -25,10 +25,18 @@ public class StripeService
 
     public async Task<Session> CreateCheckoutSession(PaymentDto paymentDto, string userId)
     {
-        // Get the user's cart items
         var cartItems = await _cartItemsService.GetCartAsync(userId);
 
-        // Create session options for Stripe
+        var customerOptions = new CustomerCreateOptions
+        {
+            Email = paymentDto.BillingEmail,
+            Name = paymentDto.BillingName,
+            Phone = paymentDto.BillingPhone
+        };
+
+        var customerService = new CustomerService();
+        var customer = await customerService.CreateAsync(customerOptions);
+
         var options = new SessionCreateOptions
         {
             PaymentMethodTypes = new List<string> { "card" },
@@ -36,6 +44,7 @@ public class StripeService
             Mode = "payment",
             SuccessUrl = "http://localhost:5179/success?session_id={CHECKOUT_SESSION_ID}",
             CancelUrl = "http://localhost:5179/cancel",
+            Customer = customer.Id, // 🏷️ Müştəri ID-si sessiyaya bağlanır
             Metadata = new Dictionary<string, string>
             {
                 { "email", paymentDto.BillingEmail },
@@ -47,6 +56,7 @@ public class StripeService
                 }
             }
         };
+        
         foreach (var item in cartItems)
         {
             options.LineItems.Add(new SessionLineItemOptions
@@ -65,15 +75,16 @@ public class StripeService
             });
         }
 
-        var service = new SessionService();
-        var session = await service.CreateAsync(options);
+        // 🚀 Stripe Checkout sessiyası yaradılır
+        var sessionService = new SessionService();
+        var session = await sessionService.CreateAsync(options);
 
-
+        // 📧 Müştəriyə ödəniş təsdiq e-maili göndərilir
         var mailRequest = new MailRequest
         {
             ToEmail = paymentDto.BillingEmail,
             Subject = "Uğurlu Ödəniş",
-            Body = $"Hormətli {paymentDto.BillingName}, sizin ödəniş uğurla yerinə yetirildi." +
+            Body = $"Hörmətli {paymentDto.BillingName}, sizin ödənişiniz uğurla yerinə yetirildi." +
                    "<br><br>" +
                    "Ən yaxşı arzularla,<br>" +
                    "FitnessApp Komandası"
