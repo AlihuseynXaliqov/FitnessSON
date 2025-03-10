@@ -7,7 +7,6 @@ public record CreatePostDto
     public string Name { get; set; }
     public string Description { get; set; }
     public string ImageUrl { get; set; }
-    public string UserId { get; set; }
 }
 
 
@@ -27,9 +26,6 @@ public class CreatePostValidator : AbstractValidator<CreatePostDto>
             .NotEmpty().WithMessage("Təsvir boş ola bilməz")
             .MinimumLength(10).WithMessage("Təsvir ən azı 10 simvoldan ibarət olmalıdır")
             .MaximumLength(100).WithMessage("Təsvir ən çox 100 simvoldan ibarət ola bilər");
-
-        RuleFor(x => x.UserId)
-            .NotEmpty().WithMessage("İstifadəçi ID-si boş ola bilməz");
     }
 
 }

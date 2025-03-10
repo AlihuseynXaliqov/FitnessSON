@@ -11,7 +11,8 @@ public class PostProfile:Profile
     {
         CreateMap<BlogPost, GetPostDto>()
             .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.User.FirstName))
-            .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.User.LastName));
+            .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.User.LastName))
+            .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.CreatedAt.ToString("yyyy-MM-dd"))); 
         CreateMap<CreatePostDto, BlogPost>().ReverseMap();
         CreateMap<UpdatePostDto, BlogPost>().ReverseMap();
     }

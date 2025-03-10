@@ -26,9 +26,7 @@ public class UpdatePostValidator : AbstractValidator<CreatePostDto>
             .NotEmpty().WithMessage("Təsvir boş ola bilməz")
             .MinimumLength(10).WithMessage("Təsvir ən azı 10 simvoldan ibarət olmalıdır")
             .MaximumLength(100).WithMessage("Təsvir ən çox 100 simvoldan ibarət ola bilər");
-
-        RuleFor(x => x.UserId)
-            .NotEmpty().WithMessage("İstifadəçi ID-si boş ola bilməz");
+        
     }
 
 }

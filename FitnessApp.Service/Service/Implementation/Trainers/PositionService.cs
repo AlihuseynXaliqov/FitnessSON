@@ -67,28 +67,31 @@ public class PositionService : IPositionService
 
     public async Task<UpdatePositionDto> UpdateAsync(UpdatePositionDto dto)
     {
-        if (dto.Id <= 0) throw new NegativeIdException("Id menfi ve ya sifir ola bilmez", 404);
-        var oldPosition = _repository.GetAll().AsNoTracking().FirstOrDefault(p => p.Id == dto.Id);
-        if (oldPosition == null) throw new NotFoundException("Position Tapilmadi", 404);
-         var allPositions =await _repository.GetAll().AsNoTracking().FirstOrDefaultAsync(x=>x.Name == oldPosition.Name); 
-        
-        if (allPositions!=null)
+        if (dto.Id <= 0) throw new NegativeIdException("Id menfi və ya sıfır ola bilməz", 404);
+
+        var oldPosition = await _repository.GetAll().FirstOrDefaultAsync(p => p.Id == dto.Id);
+        if (oldPosition == null) throw new NotFoundException("Position Tapılmadı", 404);
+
+        var existingPosition = await _repository.GetAll().FirstOrDefaultAsync(x => x.Name == dto.Name);
+    
+        if (existingPosition != null)
         {
-            if (allPositions.IsDeleted)
+            if (existingPosition.IsDeleted)
             {
-                oldPosition.IsDeleted = false;
-                _repository.Update(oldPosition);
+                existingPosition.IsDeleted = false;
+                _repository.Update(existingPosition);
             }
             else
             {
-                throw new PositionException("Hal hazirda bu position movcuddur", 404);
+                throw new PositionException("Hal-hazırda bu position mövcuddur", 404);
             }
         }
 
-        var newPosition = _mapper.Map<TrainerPosition>(dto);
+        _mapper.Map(dto, oldPosition);
         _repository.Update(oldPosition);
         await _repository.SaveChangesAsync();
-        return _mapper.Map<UpdatePositionDto>(newPosition);
+    
+        return _mapper.Map<UpdatePositionDto>(oldPosition);
     }
 
     public ICollection<GetPositionDto> GetAll()

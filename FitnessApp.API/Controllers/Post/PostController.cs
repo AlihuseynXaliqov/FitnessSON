@@ -8,8 +8,7 @@ namespace FitnessApp.API.Controllers.Post;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize(Roles = "Admin")]
-
+[Authorize]
 public class PostController : ControllerBase
 {
     private readonly IPostService _service;
@@ -51,6 +50,14 @@ public class PostController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         await _service.DeleteAsync(id);
+        return Ok();
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpPut("approvePost")]
+    public async Task<IActionResult> ApprovePost(int id)
+    {
+        await _service.ApprovePostAsync(id);
         return Ok();
     }
 }

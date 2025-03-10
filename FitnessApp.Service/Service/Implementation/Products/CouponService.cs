@@ -5,6 +5,7 @@ using FitnessApp.DAL.Repo.Interface;
 using FitnessApp.Service.DTOs.Coupon;
 using FitnessApp.Service.Helper.Exception.Base;
 using FitnessApp.Service.Service.Interface.Products;
+using Microsoft.AspNetCore.Http;
 
 namespace FitnessApp.Service.Service.Implementation.Products;
 
@@ -12,15 +13,17 @@ public class CouponService : ICouponService
 {
     private readonly ICouponRepository _repository;
     private readonly IMapper _mapper;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public CouponService(ICouponRepository repository, IMapper mapper)
+    public CouponService(ICouponRepository repository, IMapper mapper,IHttpContextAccessor httpContextAccessor)
     {
         _repository = repository;
         _mapper = mapper;
+        _httpContextAccessor = httpContextAccessor;
     }
 
 
-    public async Task<decimal> ApplyCouponAsync(ApplyCouponRequestDto couponRequestDto)
+    public async Task<string> ApplyCouponAsync(ApplyCouponRequestDto couponRequestDto)
     {
         var coupon = await _repository.GetCouponByCode(couponRequestDto.CouponCode);
 
@@ -28,22 +31,8 @@ public class CouponService : ICouponService
 
         if (coupon.ExpiryDate < DateTime.UtcNow || !coupon.IsActive)
             throw new Helper.Exception.Auth.NotFoundException("Kupon sehvdir", 400);
-
-        decimal discount;
-
-        if (coupon.IsPercentage)
-        {
-            discount = couponRequestDto.TotalAmount * (coupon.DiscountAmount / 100);
-        }
-        else
-        {
-            discount = coupon.DiscountAmount;
-        }
-
-        var finalAmount = couponRequestDto.TotalAmount - discount;
-        finalAmount = finalAmount < 0 ? 0 : finalAmount;
-
-        return finalAmount;
+        
+        return "Kupondan istifade etdiniz!" ;
     }
 
     public async Task AddCoupon(CreateCouponDto dto)
