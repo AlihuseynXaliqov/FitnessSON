@@ -25,7 +25,6 @@ public class StripeService
 
     public async Task<Session> CreateCheckoutSession(PaymentDto paymentDto, string userId)
     {
-        var cartItems = await _cartItemsService.GetCartAsync(userId);
 
         var customerOptions = new CustomerCreateOptions
         {
@@ -57,29 +56,25 @@ public class StripeService
             }
         };
         
-        foreach (var item in cartItems)
+        options.LineItems.Add(new SessionLineItemOptions
         {
-            options.LineItems.Add(new SessionLineItemOptions
+            Quantity = 1,
+            PriceData = new SessionLineItemPriceDataOptions
             {
-                Quantity = item.Quantity,
-                PriceData = new SessionLineItemPriceDataOptions
+                Currency = "usd",
+                UnitAmount = (long)(paymentDto.TotalAmount * 100),
+                ProductData = new SessionLineItemPriceDataProductDataOptions
                 {
-                    Currency = "usd",
-                    UnitAmount = (long)(item.DiscountPrice * 100),
-                    ProductData = new SessionLineItemPriceDataProductDataOptions
-                    {
-                        Name = item.Name,
-                        Images = new List<string> { item.ImageUrl }
-                    }
+                    Name = "Ödəniş",
+                    Description = "FitnessApp üçün ümumi ödəniş"
+                    
                 }
-            });
-        }
+            }
+        });
 
-        // 🚀 Stripe Checkout sessiyası yaradılır
         var sessionService = new SessionService();
         var session = await sessionService.CreateAsync(options);
 
-        // 📧 Müştəriyə ödəniş təsdiq e-maili göndərilir
         var mailRequest = new MailRequest
         {
             ToEmail = paymentDto.BillingEmail,

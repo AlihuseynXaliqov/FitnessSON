@@ -15,7 +15,7 @@ public class CouponService : ICouponService
     private readonly IMapper _mapper;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public CouponService(ICouponRepository repository, IMapper mapper,IHttpContextAccessor httpContextAccessor)
+    public CouponService(ICouponRepository repository, IMapper mapper, IHttpContextAccessor httpContextAccessor)
     {
         _repository = repository;
         _mapper = mapper;
@@ -32,8 +32,12 @@ public class CouponService : ICouponService
         if (coupon.ExpiryDate < DateTime.UtcNow || !coupon.IsActive)
             throw new Helper.Exception.Auth.NotFoundException("Kupon sehvdir", 400);
         
-        return "Kupondan istifade etdiniz!" ;
+        int couponDiscountAmount = (int)coupon.DiscountAmount;
+        
+
+        return $"{couponDiscountAmount}%";
     }
+
 
     public async Task AddCoupon(CreateCouponDto dto)
     {
