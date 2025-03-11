@@ -1,4 +1,5 @@
-﻿using FitnessApp.Service.DTOs.User;
+﻿using System.Security.Claims;
+using FitnessApp.Service.DTOs.User;
 using FitnessApp.Service.Service.Interface;
 using FitnessApp.Service.Service.Interface.Users;
 using Microsoft.AspNetCore.Mvc;
@@ -60,5 +61,16 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> ResetPassword(ResetPasswordDto dto)
     {
         return Ok(await _authService.ResetPassword(dto));
+    }
+
+    [HttpGet("[Action]")]
+    public async Task<IActionResult> GetAllUsers()
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId == null)
+            return Unauthorized();
+
+        var userInfo = await _authService.GetAllInfoAsync(userId);
+        return userInfo != null ? Ok(userInfo) : NotFound();
     }
 }

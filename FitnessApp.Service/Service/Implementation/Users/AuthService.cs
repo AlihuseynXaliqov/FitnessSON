@@ -4,11 +4,14 @@ using System.Text;
 using AutoMapper;
 using FitnessApp.Core.User;
 using FitnessApp.DAL;
+using FitnessApp.Service.DTOs.Client;
+using FitnessApp.Service.DTOs.Plan;
 using FitnessApp.Service.DTOs.User;
 using FitnessApp.Service.Helper.Email;
 using FitnessApp.Service.Helper.Exception.Auth;
 using FitnessApp.Service.Service.Interface;
 using FitnessApp.Service.Service.Interface.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -95,10 +98,9 @@ public class AuthService : IAuthService
         }
     }
 
+   
 
 
-    
-    
     public async Task<string> SubmitRegistration(SubmitRegisterDto dto)
     {
         var user = await _userManager.FindByEmailAsync(dto.Email);
@@ -248,4 +250,43 @@ public class AuthService : IAuthService
     {
         await _signInManager.SignOutAsync();
     }
+
+    
+    public async Task<UserDto> GetAllInfoAsync(string userId)
+    {
+        var user = await _context.Users
+            .Where(u => u.Id == userId)
+            .Include(u => u.ClientFeedBacks)
+            .Include(u => u.UserPlans)       
+            .ThenInclude(up => up.Plan)
+            .Select(u => new UserDto
+            {
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                UserName = u.UserName,
+                Email = u.Email,
+                ClientFeedBacks = u.ClientFeedBacks.Select(cf => new GetFeedBackDto
+                {
+                    Id = cf.Id,
+                    ImageUrl = cf.ImageUrl,
+                    Description = cf.Description,
+                    Rating = cf.Rating
+                }).ToList(),
+                UserPlans = u.UserPlans.Select(up => new GetPlanDto
+                {
+                    Id = up.Id,
+                    Name = up.Plan.Name,
+                    Duration = up.Plan.Duration.ToString(),
+                    Price = up.Plan.Price,
+                    withTrainer = up.Plan.withTrainer,
+                }).ToList()
+            })
+            .FirstOrDefaultAsync();
+
+        return user!;
+    }
+
+
+
+    
 }

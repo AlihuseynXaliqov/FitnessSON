@@ -1,4 +1,5 @@
-﻿using FitnessApp.Service.DTOs.User;
+﻿using FitnessApp.Core.User;
+using FitnessApp.Service.DTOs.User;
 
 namespace FitnessApp.Service.Service.Interface.Users;
 
@@ -12,4 +13,5 @@ public interface IAuthService
     Task<string> ResetPassword(ResetPasswordDto dto);
     Task<string> ForgetPasswordAsync(ForgetPasswordDto dto);
     Task DeleteUnconfirmedUsers();
+    Task<UserDto> GetAllInfoAsync(string userId);
 }
