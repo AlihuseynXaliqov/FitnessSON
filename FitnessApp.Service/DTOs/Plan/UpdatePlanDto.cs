@@ -22,7 +22,7 @@ public class UpdatePlanDtoValidator : AbstractValidator<UpdatePlanDto>
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Plan adı boş ola bilməz.")
             .MinimumLength(3).WithMessage("Plan adı ən az 3 simvol olmalıdır.")
-            .MaximumLength(15).WithMessage("Plan adı maksimum 15 simvol ola bilər.");
+            .MaximumLength(25).WithMessage("Plan adı maksimum 25 simvol ola bilər.");
 
         RuleFor(x => x.Duration)
             .IsInEnum().WithMessage("Düzgün bir müddət tipi seçilməlidir.");
@@ -40,6 +40,6 @@ public class UpdatePlanDtoValidator : AbstractValidator<UpdatePlanDto>
 
         RuleForEach(x => x.Features)
             .NotEmpty().WithMessage("Xüsusiyyət boş ola bilməz.")
-            .MaximumLength(20).WithMessage("Xüsusiyyət maksimum 20 simvol ola bilər.");
+            .MaximumLength(50).WithMessage("Xüsusiyyət maksimum 50 simvol ola bilər.");
     }
 }

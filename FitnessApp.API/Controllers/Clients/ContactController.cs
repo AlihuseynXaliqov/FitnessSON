@@ -18,26 +18,27 @@ public class ContactController : ControllerBase
         _contactService = contactService;
     }
 
-    [HttpGet("Contacts")]
+    [HttpGet("contacts")]
     public IActionResult GetAll()
     {
         return Ok(_contactService.GetAll());
     }
 
-    [HttpGet("Contacts/{id}")]
+    [HttpGet("contacts/{id}")]
     public async Task<IActionResult> GetById(int id)
     {
         return Ok(await _contactService.GetById(id));
     }
-    
+
     [AllowAnonymous]
     [HttpPost("create")]
     public async Task<IActionResult> Create(CreateContactDto dto)
     {
-        return Ok(await _contactService.Create(dto));
+        var message = await _contactService.Create(dto);
+        return StatusCode(StatusCodes.Status201Created, new { success = true, message });
     }
 
-    [HttpDelete("Delete/{id}")]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         await _contactService.Delete(id);

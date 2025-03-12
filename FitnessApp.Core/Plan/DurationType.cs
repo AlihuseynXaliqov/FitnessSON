@@ -2,7 +2,7 @@
 
 public enum DurationType
 {
-    Day=0,
+    Day=1,
     Week=7,
-    Month=1
+    Month=30
 }

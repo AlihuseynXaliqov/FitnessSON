@@ -57,10 +57,7 @@ public class SubscribePlanService : ISubscribePlanService
         {
             return "Sizin artıq aktiv planınız var. Yeni planı aktiv etmək üçün köhnə planın bitməsini gözləyin.";
         }
-
-        /*
-        Console.WriteLine("-------------------------" + plan.Plan.Duration.ToString());
-        */
+        
         var newPlan = _mapper.Map<UserPlan>(dto);
         newPlan.UserId = userId;
         newPlan.PlanId = dto.PlanId;

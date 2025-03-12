@@ -22,7 +22,7 @@ public class ContactService : IContactService
         _mailService = mailService;
     }
 
-    public async Task<CreateContactDto> Create(CreateContactDto dto)
+    public async Task<string> Create(CreateContactDto dto)
     {
         var contact = _mapper.Map<ContactMessage>(dto);
         await _repository.AddAsync(contact);
@@ -53,7 +53,7 @@ public class ContactService : IContactService
             _mailService.SendEmailAsync(userMailRequest)
         );
 
-        return _mapper.Map<CreateContactDto>(contact);
+        return "Message elave olundu";
     }
 
 

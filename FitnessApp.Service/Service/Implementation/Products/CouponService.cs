@@ -35,7 +35,7 @@ public class CouponService : ICouponService
         int couponDiscountAmount = (int)coupon.DiscountAmount;
         
 
-        return $"{couponDiscountAmount}%";
+        return $"{couponDiscountAmount}";
     }
 
 
