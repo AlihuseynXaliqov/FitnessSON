@@ -4,5 +4,5 @@ namespace FitnessApp.Service.Service.Interface.Plan;
 
 public interface ISubscribePlanService
 {
-    Task<string> SubscribePlan(SubscribePlanDto dto);
+    Task<string> SubscribePlanAfterPayment(string userId, int planId);
 }

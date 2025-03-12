@@ -53,7 +53,7 @@ public class ContactService : IContactService
             _mailService.SendEmailAsync(userMailRequest)
         );
 
-        return "Message elave olundu";
+        return "Mesaj elave olundu";
     }
 
 

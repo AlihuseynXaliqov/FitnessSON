@@ -33,50 +33,34 @@ public class SubscribePlanService : ISubscribePlanService
         _mapper = mapper;
     }
 
-    public async Task<string> SubscribePlan(SubscribePlanDto dto)
+    public async Task<string> SubscribePlanAfterPayment(string userId, int planId)
     {
-        var userId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        if (string.IsNullOrEmpty(userId))
-        {
-            throw new LoginException("İstifadəçi daxil olmalıdır!", 400);
-        }
-
         var user = await _userManager.FindByIdAsync(userId);
-        if (user == null) throw new NotFoundException("İstifadəçi tapılmadı!!!", 404);
+        if (user == null) return "İstifadəçi tapılmadı!";
 
-        var plan = await _planRepository.Table.FirstOrDefaultAsync(x => x.Id == dto.PlanId);
-
-        if (plan == null)
-        {
-            throw new NotFoundException("Plan tapılmadı!", 404);
-        }
+        var plan = await _planRepository.Table.FirstOrDefaultAsync(x => x.Id == planId);
+        if (plan == null) return "Plan tapılmadı!";
 
         var activePlan = _repository.GetAll("Plan").FirstOrDefault(x => x.UserId == userId && x.IsActive);
-
         if (activePlan != null && activePlan.EndDate > DateTime.UtcNow)
         {
             return "Sizin artıq aktiv planınız var. Yeni planı aktiv etmək üçün köhnə planın bitməsini gözləyin.";
         }
-        
-        var newPlan = _mapper.Map<UserPlan>(dto);
-        newPlan.UserId = userId;
-        newPlan.PlanId = dto.PlanId;
-        newPlan.StartDate = DateTime.UtcNow;
 
-        if (DurationType.Month == plan.Duration)
+        var newPlan = new UserPlan
         {
-            newPlan.EndDate = newPlan.StartDate.AddMonths(1);
-        }
-        else
-        {
-            newPlan.EndDate = newPlan.StartDate.AddDays((int)plan.Duration);
-        }
+            UserId = userId,
+            PlanId = planId,
+            StartDate = DateTime.UtcNow,
+            EndDate = plan.Duration == DurationType.Month ? DateTime.UtcNow.AddMonths(1) : DateTime.UtcNow.AddDays((int)plan.Duration),
+            IsActive = true
+        };
 
-        newPlan.IsActive = true;
         await _repository.AddAsync(newPlan);
         await _repository.SaveChangesAsync();
         return "Plan uğurla aktiv edildi.";
     }
+
 
     public async Task CheckAndDeactivateExpiredPlans()
     {
