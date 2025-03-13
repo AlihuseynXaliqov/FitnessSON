@@ -54,7 +54,8 @@ public class AuthController : ControllerBase
     [HttpPost("[Action]")]
     public async Task<IActionResult> ForgetPassword(ForgetPasswordDto dto)
     {
-        return Ok(await _authService.ForgetPasswordAsync(dto));
+        var message = await _authService.ForgetPasswordAsync(dto);
+        return Ok(new { success = true, message });
     }
 
     [HttpPost("[Action]")]
@@ -63,7 +64,7 @@ public class AuthController : ControllerBase
         return Ok(await _authService.ResetPassword(dto));
     }
 
-    [HttpGet("[Action]")]
+    /*[HttpGet("[Action]")]
     public async Task<IActionResult> GetAllUsers()
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -72,5 +73,5 @@ public class AuthController : ControllerBase
 
         var userInfo = await _authService.GetAllInfoAsync(userId);
         return userInfo != null ? Ok(userInfo) : NotFound();
-    }
+    }*/
 }

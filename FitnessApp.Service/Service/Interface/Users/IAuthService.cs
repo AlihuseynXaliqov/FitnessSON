@@ -13,5 +13,7 @@ public interface IAuthService
     Task<string> ResetPassword(ResetPasswordDto dto);
     Task<string> ForgetPasswordAsync(ForgetPasswordDto dto);
     Task DeleteUnconfirmedUsers();
+    /*
     Task<UserDto> GetAllInfoAsync(string userId);
+*/
 }

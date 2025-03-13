@@ -43,20 +43,37 @@ public class PlanService : IPlanService
         var plan = await _repository.GetByIdAsync(id);
         if (plan == null) throw new NotFoundException("Plan tapılmadı!!!", 404);
         var planDto = _mapper.Map<GetPlanDto>(plan);
+        planDto.DurationText = ((DurationType)plan.Duration).ToFriendlyString();
+
         return planDto;
     }
 
     public ICollection<GetPlanDto> GetPlansWithTrainer()
     {
         var plans = _repository.GetAll().Where(x => x.withTrainer);
-        return _mapper.Map<ICollection<GetPlanDto>>(plans);
+        var planDtos = new List<GetPlanDto>(); 
+        foreach (var plan in plans)
+        {
+            var planDto = _mapper.Map<GetPlanDto>(plan);
+            planDto.DurationText = ((DurationType)plan.Duration).ToFriendlyString();
+            planDtos.Add(planDto);
+        }
+
+        return planDtos;
     }
 
     public ICollection<GetPlanDto> GetPlansWithoutTrainer()
     {
         var plans = _repository.GetAll().Where(x => !x.withTrainer);
-        return _mapper.Map<ICollection<GetPlanDto>>(plans);
-    }
+        var planDtos = new List<GetPlanDto>(); 
+        foreach (var plan in plans)
+        {
+            var planDto = _mapper.Map<GetPlanDto>(plan);
+            planDto.DurationText = ((DurationType)plan.Duration).ToFriendlyString();
+            planDtos.Add(planDto);
+        }
+
+        return planDtos;    }
 
     public async Task<UpdatePlanDto> UpdateAsync(UpdatePlanDto updatePlanDto)
     {

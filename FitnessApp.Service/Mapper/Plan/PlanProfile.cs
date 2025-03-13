@@ -11,7 +11,7 @@ public class PlanProfile:Profile
     {
         CreateMap<CreatePlanDto, PricingPlan>().ReverseMap();
         CreateMap<GetPlanDto, PricingPlan>()
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration.ToString())).ReverseMap();
+            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration)).ReverseMap();
         CreateMap<UpdatePlanDto, PricingPlan>().ReverseMap();
 
         CreateMap<UserPlan, SubscribePlanDto>().ReverseMap();

@@ -68,7 +68,7 @@ public class AuthService : IAuthService
         appUser.ConfirmKeyCreatedAt = DateTime.UtcNow;
         await _context.SaveChangesAsync();
         
-        var link = $"http://localhost:5179//auth/submit-registration?email={registerDto.Email}&token={token}";
+        var link = $"http://localhost:5179/auth/submit-registration?email={registerDto.Email}&token={token}";
 
         MailRequest mailRequest = new MailRequest()
         {
@@ -252,6 +252,7 @@ public class AuthService : IAuthService
     }
 
     
+    /*
     public async Task<UserDto> GetAllInfoAsync(string userId)
     {
         var user = await _context.Users
@@ -276,7 +277,7 @@ public class AuthService : IAuthService
                 {
                     Id = up.Id,
                     Name = up.Plan.Name,
-                    Duration = up.Plan.Duration.ToString(),
+                    Duration = up.Plan.Duration,
                     Price = up.Plan.Price,
                     withTrainer = up.Plan.withTrainer,
                 }).ToList()
@@ -285,6 +286,7 @@ public class AuthService : IAuthService
 
         return user!;
     }
+    */
 
 
 

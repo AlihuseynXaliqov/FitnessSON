@@ -6,7 +6,8 @@ public record GetPlanDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public string Duration { get; set; }
+    public int Duration { get; set; }
+    public string DurationText { get; set; }
     public decimal Price { get; set; }
     public string Description { get; set; }
     public bool withTrainer { get; set; } 
